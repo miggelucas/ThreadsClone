@@ -8,8 +8,30 @@
 import SwiftUI
 
 struct ExploreView: View {
+    
+    @State private var searchText: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            VStack {
+                ScrollView(showsIndicators: false) {
+                    LazyVStack {
+                        ForEach(0...10, id:\.self) { user in
+                            
+                            VStack {
+                                UserCell()
+                                
+                                Divider()
+                            }
+                            
+                        }
+                        
+                    }
+                }
+                .searchable(text: $searchText, prompt: "Search")
+                .navigationTitle("Search")
+            }
+        }
     }
 }
 
