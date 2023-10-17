@@ -24,10 +24,13 @@ struct ThreadsTabView: View {
                         
                 }
                 .tag(TabViewOption.feed)
+                .toolbarBackground(Color.white, for: .tabBar)
             
             ExploreView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
+                        .tag(TabViewOption.feed)
+                        .toolbarBackground(Color.white, for: .tabBar)
                        
                 }
                 .tag(TabViewOption.explore)
@@ -38,6 +41,8 @@ struct ThreadsTabView: View {
                        
                 }
                 .tag(TabViewOption.plus)
+                .tag(TabViewOption.feed)
+                .toolbarBackground(Color.white, for: .tabBar)
             
             ActivityView()
                 .tabItem {
@@ -46,6 +51,8 @@ struct ThreadsTabView: View {
                       
                 }
                 .tag(TabViewOption.activity)
+                .tag(TabViewOption.feed)
+                .toolbarBackground(Color.white, for: .tabBar)
             
             ProfileView()
                 .tabItem {
@@ -54,9 +61,14 @@ struct ThreadsTabView: View {
                       
                 }
                 .tag(TabViewOption.profile)
-        
+                .tag(TabViewOption.feed)
+                .toolbarBackground(Color.white, for: .tabBar)
+            
+   
         }
         .tint(.black)
+      
+
     }
 }
 

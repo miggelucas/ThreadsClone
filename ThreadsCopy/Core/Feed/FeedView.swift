@@ -25,6 +25,8 @@ struct FeedView: View {
             .navigationTitle("Threads")
             .navigationBarTitleDisplayMode(.inline)
             
+            .toolbarBackground(Color.white, for: .navigationBar)
+            
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
