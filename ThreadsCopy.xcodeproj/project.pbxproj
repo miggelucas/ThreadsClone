@@ -23,6 +23,7 @@
 		0C54D6662ADE40A00027B57B /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54D6652ADE40A00027B57B /* ActivityView.swift */; };
 		0C54D6692ADE40AC0027B57B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54D6682ADE40AC0027B57B /* ProfileView.swift */; };
 		0C54D66B2ADE40E10027B57B /* CreatThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54D66A2ADE40E10027B57B /* CreatThreadView.swift */; };
+		0C54D66D2ADEBCA60027B57B /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54D66C2ADEBCA60027B57B /* ThreadCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		0C54D6652ADE40A00027B57B /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		0C54D6682ADE40AC0027B57B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0C54D66A2ADE40E10027B57B /* CreatThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatThreadView.swift; sourceTree = "<group>"; };
+		0C54D66C2ADEBCA60027B57B /* ThreadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				0C54D65B2ADE403C0027B57B /* FeedView.swift */,
+				0C54D66C2ADEBCA60027B57B /* ThreadCell.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				0C54D6552ADE36ED0027B57B /* LoginViewModel.swift in Sources */,
 				0C54D6582ADE3C420027B57B /* ThreadsTabView.swift in Sources */,
 				0C54D64D2ADE2E7B0027B57B /* ThreadsTextFieldModifier.swift in Sources */,
+				0C54D66D2ADEBCA60027B57B /* ThreadCell.swift in Sources */,
 				0C54D62F2ADE26B20027B57B /* ThreadsCopyApp.swift in Sources */,
 				0C54D64A2ADE2D290027B57B /* RegistrationView.swift in Sources */,
 				0C54D6692ADE40AC0027B57B /* ProfileView.swift in Sources */,
