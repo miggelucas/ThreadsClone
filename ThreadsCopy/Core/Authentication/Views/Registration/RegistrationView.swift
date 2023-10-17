@@ -9,11 +9,9 @@ import SwiftUI
 
 struct RegistrationView: View {
     
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var fullName: String = ""
-    @State private var userName: String = ""
+    @Environment(\.dismiss) var dismiss
     
+    @StateObject private var viewModel: RegistrationViewModel = RegistrationViewModel()
     
     var body: some View {
         VStack {
@@ -48,20 +46,20 @@ struct RegistrationView: View {
     private var textFieldSection: some View {
         VStack {
             
-            TextField("Enter your email", text: $email)
+            TextField("Enter your email", text: $viewModel.email)
                 .textInputAutocapitalization(.none)
                 .modifier(ThreadsTextFieldModifier())
             
             
-            SecureField("Enter your password", text: $password)
+            SecureField("Enter your password", text: $viewModel.password)
                 .textInputAutocapitalization(.none)
                 .modifier(ThreadsTextFieldModifier())
             
-            TextField("Enter your full name", text: $email)
+            TextField("Enter your full name", text: $viewModel.fullName)
                 .textInputAutocapitalization(.sentences)
                 .modifier(ThreadsTextFieldModifier())
             
-            TextField("Enter your username", text: $email)
+            TextField("Enter your username", text: $viewModel.userName)
                 .modifier(ThreadsTextFieldModifier())
             
         }
@@ -70,7 +68,7 @@ struct RegistrationView: View {
     private var signUpButtonSection: some View {
         
         Button {
-            
+            viewModel.singUpPressed()
         } label: {
             Text("Sign Up")
                 .modifier(ThreadsLoginSingUpButtonModifier())
@@ -79,7 +77,7 @@ struct RegistrationView: View {
     
     private var footerButtonSection: some View {
         Button {
-            
+            dismiss()
         } label: {
             HStack(spacing: 3) {
                 Text("Already have an account?")

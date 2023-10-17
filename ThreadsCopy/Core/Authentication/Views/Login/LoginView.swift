@@ -9,8 +9,9 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var email: String = ""
-    @State private var password: String = ""
+
+    
+    @StateObject private var viewModel: LoginViewModel = LoginViewModel()
     
     
     var body: some View {
@@ -52,11 +53,11 @@ struct LoginView: View {
     private var textFieldSection: some View {
         VStack {
             
-            TextField("Enter your email", text: $email)
+            TextField("Enter your email", text: $viewModel.email)
                 .modifier(ThreadsTextFieldModifier())
 
             
-            SecureField("Enter your password", text: $password)
+            SecureField("Enter your password", text: $viewModel.password)
                 .modifier(ThreadsTextFieldModifier())
             
         }
@@ -88,6 +89,7 @@ struct LoginView: View {
     private var footerButtonSection: some View {
         NavigationLink {
             RegistrationView()
+                .navigationBarBackButtonHidden(true)
         } label: {
             HStack(spacing: 3) {
                 Text("Don't have an accout?")
