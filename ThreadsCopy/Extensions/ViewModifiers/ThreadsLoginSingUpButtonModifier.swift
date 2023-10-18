@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ThreadsLoginSingUpButtonModifier: ViewModifier {
+
+    var colorMode: ColorScheme
+    
     func body(content: Content) -> some View {
         content
             .font(.subheadline)
             .fontWeight(.semibold)
-            .tint(.white)
+            .foregroundStyle(colorMode == .light ? Color.white : Color.black)
             .frame(width: 352, height: 44)
-            .background(.black)
+            .background(Color.primary)
             .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }

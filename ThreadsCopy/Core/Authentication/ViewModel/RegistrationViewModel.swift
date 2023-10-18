@@ -15,9 +15,21 @@ class RegistrationViewModel: ObservableObject {
     @Published var fullName: String = ""
     @Published var userName: String = ""
     
+    let service: AuthService
     
-    public func singUpPressed() {
-        
+    init(service: AuthService = AuthService.shared) {
+        self.service = service
     }
     
+    
+    public func singUpPressed() {
+        Task {
+            try await createUser()
+        }
+    }
+    
+    
+    func createUser() async throws {
+        try await service.createUser(withEmail: email, password: password, fullName: fullName, userName: userName)
+    }
 }

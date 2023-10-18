@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct RegistrationView: View {
-    
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
     
     @StateObject private var viewModel: RegistrationViewModel = RegistrationViewModel()
-    
+
     var body: some View {
         VStack {
             
@@ -47,7 +47,7 @@ struct RegistrationView: View {
         VStack {
             
             TextField("Enter your email", text: $viewModel.email)
-                .textInputAutocapitalization(.none)
+                .textInputAutocapitalization(.never)
                 .modifier(ThreadsTextFieldModifier())
             
             
@@ -71,7 +71,7 @@ struct RegistrationView: View {
             viewModel.singUpPressed()
         } label: {
             Text("Sign Up")
-                .modifier(ThreadsLoginSingUpButtonModifier())
+                .modifier(ThreadsLoginSingUpButtonModifier(colorMode: colorScheme))
         }
     }
     
@@ -86,7 +86,7 @@ struct RegistrationView: View {
                     .fontWeight(.semibold)
             }
             .font(.footnote)
-            .tint(.black)
+            .tint(.primary)
             
         }
     }

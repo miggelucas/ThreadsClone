@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    
-
+    @Environment(\.colorScheme) var colorScheme
     
     @StateObject private var viewModel: LoginViewModel = LoginViewModel()
     
@@ -43,7 +42,8 @@ struct LoginView: View {
     }
     
     private var threadsLogoSection: some View {
-        Image("threadsLogo", label: Text("Threads Logo"))
+        Image(colorScheme == .light ? "ThreadsLogo" : "ThreadsWhiteLogo",
+              label: Text("Threads Logo"))
             .resizable()
             .scaledToFit()
             .frame(width: 120)
@@ -73,7 +73,7 @@ struct LoginView: View {
                 .fontWeight(.semibold)
                 .padding(.vertical)
                 .padding(.trailing, 38)
-                .tint(.black)
+                .tint(.primary)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
        
@@ -82,7 +82,7 @@ struct LoginView: View {
             
         } label: {
             Text("Login")
-                .modifier(ThreadsLoginSingUpButtonModifier())
+                .modifier(ThreadsLoginSingUpButtonModifier(colorMode: self.colorScheme))
         }
     }
     
@@ -92,13 +92,13 @@ struct LoginView: View {
                 .navigationBarBackButtonHidden(true)
         } label: {
             HStack(spacing: 3) {
-                Text("Don't have an accout?")
+                Text("Don't have an account?")
                 
                 Text("Sign up")
                     .fontWeight(.semibold)
             }
             .font(.footnote)
-            .tint(.black)
+            .tint(.primary)
         }
 
     }
