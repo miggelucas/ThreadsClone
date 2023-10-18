@@ -20,7 +20,7 @@ struct CircularProfileImageView: View {
         Image(imageString)
             .resizable()
             .scaledToFill()
-            .frame(width: 40, height: 40)
+            .frame(width: 60, height: 60)
             .clipShape(Circle())
     }
 }
