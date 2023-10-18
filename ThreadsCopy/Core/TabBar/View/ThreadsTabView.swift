@@ -9,11 +9,10 @@ import SwiftUI
 
 struct ThreadsTabView: View {
     
-    enum TabViewOption {
-        case feed, explore, plus, activity, profile
-    }
+    @State private var selectedTab: ThreadTabViewOption = .feed
+
     
-    @State private var selectedTab: TabViewOption = .feed
+    @State private var shouldShowCreateThreadView: Bool = false
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -23,25 +22,24 @@ struct ThreadsTabView: View {
                         .environment(\.symbolVariants, selectedTab == .feed ? .fill : .none)
                         
                 }
-                .tag(TabViewOption.feed)
+                .tag(ThreadTabViewOption.feed)
                 .toolbarBackground(Color.white, for: .tabBar)
             
             ExploreView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
-                        .tag(TabViewOption.feed)
+                        .tag(ThreadTabViewOption.feed)
                         .toolbarBackground(Color.white, for: .tabBar)
                        
                 }
-                .tag(TabViewOption.explore)
+                .tag(ThreadTabViewOption.explore)
             
-            CreatThreadView()
+            Text("")
                 .tabItem {
                     Image(systemName: "plus")
                        
                 }
-                .tag(TabViewOption.plus)
-                .tag(TabViewOption.feed)
+                .tag(ThreadTabViewOption.plus)
                 .toolbarBackground(Color.white, for: .tabBar)
             
             ActivityView()
@@ -50,8 +48,8 @@ struct ThreadsTabView: View {
                         .environment(\.symbolVariants, selectedTab == .activity ? .fill : .none)
                       
                 }
-                .tag(TabViewOption.activity)
-                .tag(TabViewOption.feed)
+                .tag(ThreadTabViewOption.activity)
+
                 .toolbarBackground(Color.white, for: .tabBar)
             
             ProfileView()
@@ -60,13 +58,25 @@ struct ThreadsTabView: View {
                         .environment(\.symbolVariants, selectedTab == .profile ? .fill : .none)
                       
                 }
-                .tag(TabViewOption.profile)
-                .tag(TabViewOption.feed)
+                .tag(ThreadTabViewOption.profile)
                 .toolbarBackground(Color.white, for: .tabBar)
             
    
         }
         .tint(.black)
+        .onChange(of: selectedTab, { oldValue, newValue in
+            if newValue == .plus {
+                shouldShowCreateThreadView = true
+                selectedTab = .feed
+            }
+        })
+        
+        .sheet(isPresented: $shouldShowCreateThreadView, onDismiss:  {
+            selectedTab = .feed
+        }, content: {
+            CreatThreadView()
+        })
+     
       
 
     }
