@@ -76,7 +76,7 @@ struct ThreadCell: View {
                         
                     }
                     .padding(.vertical, 8)
-                    .tint(.black)
+                    .tint(.primary)
                     
                     
                 }

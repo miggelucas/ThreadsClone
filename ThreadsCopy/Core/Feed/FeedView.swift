@@ -35,7 +35,7 @@ struct FeedView: View {
                         print("DEBUG: refresh Threads")
                     } label: {
                         Image(systemName: "arrow.counterclockwise")
-                            .tint(.black)
+                            .tint(.primary)
                     }
                 }
             }
