@@ -10,6 +10,8 @@ import SwiftUI
 struct FeedView: View {
     @Environment(\.colorScheme) var colorScheme
     
+    var authService = AuthService.shared
+    
     var body: some View {
         
         NavigationStack {
@@ -33,7 +35,7 @@ struct FeedView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        
+                        authService.singOut()
                         print("DEBUG: refresh Threads")
                     } label: {
                         Image(systemName: "arrow.counterclockwise")

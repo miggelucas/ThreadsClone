@@ -6,8 +6,10 @@
 //
 
 import Foundation
-import Firebase
 import FirebaseAuth
+import FirebaseFirestoreSwift
+import Firebase
+
 
 
 class AuthService: ObservableObject {
@@ -58,7 +60,8 @@ class AuthService: ObservableObject {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             userSession = result.user
-            print("DEBUG: Created user\(result.user.uid)")
+            
+            try await uploadUserData(withEmail: email, fullName: fullName, userName: userName, id: result.user.uid )
             return nil
         } catch {
             if let nsError = error as NSError? {
@@ -69,10 +72,24 @@ class AuthService: ObservableObject {
         }
     }
     
+    @MainActor
+    public func uploadUserData(withEmail email: String,
+                               fullName: String,
+                               userName: String,
+                               id: String
+    ) async throws {
+        let user = User(id: id, fullName: fullName, email: email, username: userName, profileImageUrl: nil, bio: nil)
+        guard let userData = try? Firestore.Encoder().encode(user) else { return }
+        try await Firestore.firestore().collection("users").document(id).setData(userData)
+        UserService.shared.currentUser = user
+        
+    }
+    
     
     public func singOut() {
         try? Auth.auth().signOut()
         self.userSession = nil
+        UserService.shared.currentUser = nil
 
         
     }

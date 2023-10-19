@@ -12,8 +12,6 @@ struct ThreadsTabView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @State private var selectedTab: ThreadTabViewOption = .feed
-    
-    
     @State private var shouldShowCreateThreadView: Bool = false
     
     var body: some View {

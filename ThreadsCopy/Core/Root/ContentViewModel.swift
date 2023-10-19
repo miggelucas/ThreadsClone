@@ -26,7 +26,7 @@ class ContentViewModel: ObservableObject {
 }
 
 extension ContentViewModel: AuthServiceDelegate {
-    func notifyChangeInUser(user: User?) {
+    func notifyChangeInUser(user: FirebaseAuth.User?) {
         self.userSession = user
     }
     

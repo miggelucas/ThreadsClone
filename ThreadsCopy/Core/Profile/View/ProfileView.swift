@@ -9,9 +9,13 @@ import SwiftUI
 
 struct ProfileView: View {
     
+    @StateObject var viewModel = ProfileViewModel()
     @State private var selectedFilter: ProfileThreadFilter = .threads
     @Namespace var animation
     
+    private var currentUser: User? {
+        viewModel.currentUser
+    }
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -22,16 +26,18 @@ struct ProfileView: View {
                         
                         
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Thomas Yorke")
+                            Text(currentUser?.fullName ?? "Thomas Yorke")
                                 .font(.title2)
                                 .fontWeight(.semibold)
                             
-                            Text("thon_yorke")
+                            Text(currentUser?.username ?? "thon_yorke")
                                 .font(.subheadline)
                         }
                         
-                        Text("Climate change is real and you should do something about it")
-                            .font(.footnote)
+                        if let bio = currentUser?.bio {
+                            Text(bio)
+                                .font(.footnote)
+                        }
                         
                         Text("15 followers")
                             .font(.caption)
@@ -102,7 +108,7 @@ struct ProfileView: View {
         }
         .padding(.horizontal)
         .refreshable {
-            // should update
+            viewModel.refreshTriggered()
         }
         
     }
