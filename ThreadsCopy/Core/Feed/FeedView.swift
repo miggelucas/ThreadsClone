@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FeedView: View {
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         
@@ -26,7 +27,8 @@ struct FeedView: View {
             .navigationTitle("Threads")
             .navigationBarTitleDisplayMode(.inline)
             
-            .toolbarBackground(Color.white, for: .navigationBar)
+            .toolbarBackground(colorScheme == .light ? Color.white : Color.black,
+                               for: .navigationBar)
             
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
