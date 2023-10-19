@@ -15,12 +15,19 @@ class RegistrationViewModel: ObservableObject {
     @Published var fullName: String = ""
     @Published var userName: String = ""
     
-    let service: AuthService
+    private let service: AuthService
     
     init(service: AuthService = AuthService.shared) {
         self.service = service
     }
     
+    
+    public var isSingUpEnable: Bool {
+        return email.contains("@")
+        && password.count > 5
+        && !fullName.isEmpty
+        && !userName.isEmpty
+    }
     
     public func singUpPressed() {
         Task {

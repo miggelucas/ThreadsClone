@@ -22,23 +22,18 @@ struct LoginView: View {
 
                 threadsLogoSection
                 
-                
                 textFieldSection
                 
                 loginButtonSection
 
-                
                 Spacer()
                 
                 Divider()
                 
-                
                 footerButtonSection
                 .padding(.vertical, 16)
             }
-           
         }
-        
     }
     
     private var threadsLogoSection: some View {
@@ -77,13 +72,14 @@ struct LoginView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
        
-        
         Button {
             
         } label: {
             Text("Login")
                 .modifier(ThreadsLoginSingUpButtonModifier(colorMode: self.colorScheme))
         }
+        .opacity(viewModel.isLoginEnable ? 1 : 0.75)
+        .animation(.smooth, value: viewModel.isLoginEnable)
     }
     
     private var footerButtonSection: some View {
@@ -100,7 +96,6 @@ struct LoginView: View {
             .font(.footnote)
             .tint(.primary)
         }
-
     }
 }
 

@@ -13,4 +13,8 @@ class LoginViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
     
+    var isLoginEnable: Bool {
+        return email.contains("@") && !password.isEmpty
+    }
+    
 }

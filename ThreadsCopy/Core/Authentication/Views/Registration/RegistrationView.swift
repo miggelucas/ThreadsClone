@@ -30,13 +30,13 @@ struct RegistrationView: View {
             Divider()
             
             footerButtonSection
-            
                 .padding(.vertical, 16)
         }
     }
     
     private var threadsLogoSection: some View {
-        Image("threadsLogo", label: Text("Threads Logo"))
+        Image(colorScheme == .light ? "ThreadsLogo" : "ThreadsWhiteLogo",
+              label: Text("Threads Logo"))
             .resizable()
             .scaledToFit()
             .frame(width: 120)
@@ -48,6 +48,7 @@ struct RegistrationView: View {
             
             TextField("Enter your email", text: $viewModel.email)
                 .textInputAutocapitalization(.never)
+                .keyboardType(.emailAddress)
                 .modifier(ThreadsTextFieldModifier())
             
             
@@ -56,7 +57,7 @@ struct RegistrationView: View {
                 .modifier(ThreadsTextFieldModifier())
             
             TextField("Enter your full name", text: $viewModel.fullName)
-                .textInputAutocapitalization(.sentences)
+                .textInputAutocapitalization(.words)
                 .modifier(ThreadsTextFieldModifier())
             
             TextField("Enter your username", text: $viewModel.userName)
@@ -66,13 +67,14 @@ struct RegistrationView: View {
     }
     
     private var signUpButtonSection: some View {
-        
         Button {
             viewModel.singUpPressed()
         } label: {
             Text("Sign Up")
                 .modifier(ThreadsLoginSingUpButtonModifier(colorMode: colorScheme))
         }
+        .opacity(viewModel.isSingUpEnable ? 1 : 0.75)
+        .animation(.smooth, value: viewModel.isSingUpEnable)
     }
     
     private var footerButtonSection: some View {
