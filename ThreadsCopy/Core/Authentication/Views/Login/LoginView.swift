@@ -49,6 +49,8 @@ struct LoginView: View {
         VStack {
             
             TextField("Enter your email", text: $viewModel.email)
+                .keyboardType(.emailAddress)
+                .textInputAutocapitalization(.none)
                 .modifier(ThreadsTextFieldModifier())
 
             
@@ -73,7 +75,7 @@ struct LoginView: View {
         }
        
         Button {
-            
+            viewModel.loginPressed()
         } label: {
             Text("Login")
                 .modifier(ThreadsLoginSingUpButtonModifier(colorMode: self.colorScheme))

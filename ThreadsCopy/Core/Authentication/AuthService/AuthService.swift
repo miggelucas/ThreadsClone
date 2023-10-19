@@ -9,15 +9,29 @@ import Foundation
 import Firebase
 import FirebaseAuth
 
-class AuthService {
+
+class AuthService: ObservableObject {
     
     static var shared: AuthService = AuthService()
+    
+    var userSession: FirebaseAuth.User? {
+        didSet {
+            authDelegate?.notifyChangeInUser(user: userSession)
+        }
+    }
+    
+    var authDelegate: AuthServiceDelegate?
+    
+    init(userSession: FirebaseAuth.User? = Auth.auth().currentUser) {
+        self.userSession = userSession
+    }
     
     @MainActor
     func login(withEmail email: String, password: String) async throws {
         
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
+            userSession = result.user
             
             print("DEBUG: Logged user \(result.user.uid)")
         } catch  {
@@ -43,7 +57,7 @@ class AuthService {
         
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
-            
+            userSession = result.user
             print("DEBUG: Created user\(result.user.uid)")
             return nil
         } catch {
@@ -53,9 +67,13 @@ class AuthService {
                 
             }
         }
-        
-        
-        
+    }
+    
+    
+    public func singOut() {
+        try? Auth.auth().signOut()
+        self.userSession = nil
+
         
     }
 }

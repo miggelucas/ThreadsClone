@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FeedView: View {
+    
     var body: some View {
         
         NavigationStack {
@@ -30,6 +31,7 @@ struct FeedView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
+                        
                         print("DEBUG: refresh Threads")
                     } label: {
                         Image(systemName: "arrow.counterclockwise")
