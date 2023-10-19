@@ -12,7 +12,6 @@ struct LoginView: View {
     
     @StateObject private var viewModel: LoginViewModel = LoginViewModel()
     
-    
     var body: some View {
         NavigationStack {
             
@@ -33,6 +32,7 @@ struct LoginView: View {
                 footerButtonSection
                 .padding(.vertical, 16)
             }
+            
         }
     }
     

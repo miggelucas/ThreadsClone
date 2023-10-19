@@ -32,6 +32,12 @@ struct RegistrationView: View {
             footerButtonSection
                 .padding(.vertical, 16)
         }
+        .alert("Failed to create User", isPresented: $viewModel.shouldShowAlert) {
+            
+        } message: {
+            Text(viewModel.alertMessage)
+        }
+
     }
     
     private var threadsLogoSection: some View {

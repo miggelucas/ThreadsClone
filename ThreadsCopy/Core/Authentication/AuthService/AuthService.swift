@@ -32,35 +32,30 @@ class AuthService {
                     
                 default:
                     print("DEBUG: Failed to log user\(error.localizedDescription)")
-            
-              }
+                    
+                }
             }
         }
     }
     
     @MainActor
-    func createUser(withEmail email: String, password: String, fullName: String, userName: String) async throws {
+    func createUser(withEmail email: String, password: String, fullName: String, userName: String) async -> AuthErrorCode? {
         
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             
             print("DEBUG: Created user\(result.user.uid)")
+            return nil
         } catch {
             if let nsError = error as NSError? {
-                let authError = AuthErrorCode(_nsError: nsError).code
-                switch authError {
-                case .emailAlreadyInUse:
-                    print("DEBUG: Email already in user")
-                    
-                case .wrongPassword:
-                    print("DEBUG: Wrong Password")
-                    
-                default:
-                    print("DEBUG: Failed to log user\(error.localizedDescription)")
-            
-              }
+                let authError = AuthErrorCode(_nsError: nsError)
+                return authError
+                
             }
         }
+        
+        
+        
         
     }
 }
