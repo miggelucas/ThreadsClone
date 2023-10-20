@@ -85,7 +85,8 @@ struct CurrentUserProfileView: View {
                 viewModel.refreshTriggered()
             }
             .sheet(isPresented: $showEditProfileView) {
-                EditProfileView()
+                EditProfileView(viewModel: self.viewModel)
+                
             }
         }
     }

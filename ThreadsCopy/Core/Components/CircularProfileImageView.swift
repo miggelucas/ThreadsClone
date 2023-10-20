@@ -9,19 +9,20 @@ import SwiftUI
 
 struct CircularProfileImageView: View {
     
-    var imageString: String = "userLucas"
+    var imageProfile: Image
     
-    
-    init(imageString: String = "userLucas") {
-        self.imageString = imageString
+    init(image: Image = Image(systemName: "person.crop.circle")) {
+        self.imageProfile = image
     }
     
     var body: some View {
-        Image(imageString)
+        imageProfile
             .resizable()
+            .tint(.primary)
             .scaledToFill()
             .frame(width: 60, height: 60)
             .clipShape(Circle())
+     
     }
 }
 
