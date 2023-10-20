@@ -12,15 +12,7 @@ struct EditProfileView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     
-    @State private var bio: String = ""
-    @State private var link: String = ""
-    @State private var isPrivateProfile: Bool = false
-    
-    @ObservedObject var viewModel: CurrentUserProfileViewModel
-    
-    init( viewModel: CurrentUserProfileViewModel) {
-        self.viewModel = viewModel
-    }
+    @StateObject var viewModel: EditProfileViewModel = EditProfileViewModel()
     
     var body: some View {
         NavigationStack {
@@ -57,7 +49,7 @@ struct EditProfileView: View {
                         Text("Bio")
                             .fontWeight(.semibold)
                         
-                        TextField("Enter your bio ...", text: $bio, axis: .vertical)
+                        TextField("Enter your bio ...", text: $viewModel.bio, axis: .vertical)
                             .font(.footnote)
                     }
                     
@@ -67,13 +59,13 @@ struct EditProfileView: View {
                         Text("Link")
                             .fontWeight(.semibold)
                         
-                        TextField("Add lin...", text: $link, axis: .vertical)
+                        TextField("Add lin...", text: $viewModel.link, axis: .vertical)
                             .font(.footnote)
                     }
                     
                     Divider()
                     
-                    Toggle("Private Profile", isOn: $isPrivateProfile)
+                    Toggle("Private Profile", isOn: $viewModel.isPrivateProfile)
                         .fontWeight(.semibold)
                     
                 }
@@ -111,5 +103,5 @@ struct EditProfileView: View {
 }
 
 #Preview {
-    EditProfileView(viewModel: CurrentUserProfileViewModel())
+    EditProfileView()
 }
