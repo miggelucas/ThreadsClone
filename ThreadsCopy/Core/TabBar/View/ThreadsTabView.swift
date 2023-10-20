@@ -47,7 +47,7 @@ struct ThreadsTabView: View {
                 }
                 .tag(ThreadTabViewOption.activity)
             
-            ProfileView()
+            CurrentUserProfileView()
                 .tabItem {
                     Image(systemName: "person")
                         .environment(\.symbolVariants, selectedTab == .profile ? .fill : .none)

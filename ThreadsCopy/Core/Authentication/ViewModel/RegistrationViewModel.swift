@@ -33,6 +33,7 @@ class RegistrationViewModel: ObservableObject {
         && !userName.isEmpty
     }
     
+    @MainActor
     public func singUpPressed() {
         Task {
             try await createUser()

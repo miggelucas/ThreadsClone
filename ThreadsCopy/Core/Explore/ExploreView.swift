@@ -17,14 +17,19 @@ struct ExploreView: View {
                 ScrollView(showsIndicators: false) {
                     LazyVStack {
                         ForEach(viewModel.filterdUsers) { user in
-                            VStack {
-                                UserCell(user: user)
-                                
-                                Divider()
+                            NavigationLink(value: user) {
+                                VStack {
+                                    UserCell(user: user)
+                                    
+                                    Divider()
+                                }
                             }
                         }
                     }
                 }
+                .navigationDestination(for: User.self, destination: { user in
+                    ProfileView(user: user)
+                })
                 .refreshable {
                     viewModel.refreshTriggered()
                 }

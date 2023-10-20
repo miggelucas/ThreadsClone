@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct EditProfileView: View {
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
     
     @State private var bio: String = ""
     @State private var link: String = ""
@@ -63,26 +65,21 @@ struct EditProfileView: View {
                     
                 }
                 .padding()
-                .background(.white)
+                .background(colorScheme == .light ? Color.white : Color.black)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .overlay {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color(.systemGray4))
                 }
                 .padding()
-               
-               
-                
-                
             }
-            
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel") {
-                        
+                        dismiss()
                     }
                     .font(.subheadline)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.primary)
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
@@ -91,7 +88,7 @@ struct EditProfileView: View {
                     }
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.primary)
                 }
             }
             .navigationTitle("Edit Profile")
