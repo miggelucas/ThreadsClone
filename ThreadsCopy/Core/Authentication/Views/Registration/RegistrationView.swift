@@ -53,7 +53,7 @@ struct RegistrationView: View {
         VStack {
             
             TextField("Enter your email", text: $viewModel.email)
-                .textInputAutocapitalization(.never)
+                .textInputAutocapitalization(.none)
                 .keyboardType(.emailAddress)
                 .modifier(ThreadsTextFieldModifier())
             
@@ -67,6 +67,7 @@ struct RegistrationView: View {
                 .modifier(ThreadsTextFieldModifier())
             
             TextField("Enter your username", text: $viewModel.userName)
+                .textInputAutocapitalization(.none)
                 .modifier(ThreadsTextFieldModifier())
             
         }

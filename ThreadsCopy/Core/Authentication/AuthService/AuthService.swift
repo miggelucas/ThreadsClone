@@ -89,7 +89,7 @@ class AuthService: ObservableObject {
     public func singOut() {
         try? Auth.auth().signOut()
         self.userSession = nil
-        UserService.shared.currentUser = nil
+        UserService.shared.singOut()
 
         
     }

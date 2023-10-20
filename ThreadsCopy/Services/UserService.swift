@@ -6,6 +6,7 @@
 //
 
 import Firebase
+import FirebaseFirestoreSwift
 
 class UserService {
     
@@ -19,8 +20,25 @@ class UserService {
         }
     }
     
+    static func fetchUser() async throws -> [User] {
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return [] }
+        let snapshot = try await Firestore.firestore().collectionGroup("users").getDocuments()
+        let users = snapshot.documents.compactMap { userData in
+            try? userData.data(as: User.self)
+        }
+        
+        return users.filter { user in
+            user.id != currentUserID
+        }
+    }
+    
+    
+    public func singOut() {
+        currentUser = nil
+    }
+    
     @MainActor
-    func fetchCurrentUser() async throws {
+    public func fetchCurrentUser() async throws {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let snapshot = try await Firestore.firestore().collection("users").document(uid).getDocument()
         let user = try snapshot.data(as: User.self)

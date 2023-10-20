@@ -63,6 +63,8 @@
 		0C877F882AE1EBD60099CD85 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C877F872AE1EBD60099CD85 /* User.swift */; };
 		0C877F8A2AE1F49C0099CD85 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C877F892AE1F49C0099CD85 /* UserService.swift */; };
 		0C877F8D2AE1F5ED0099CD85 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C877F8C2AE1F5ED0099CD85 /* ProfileViewModel.swift */; };
+		0C877F8F2AE1FAC60099CD85 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C877F8E2AE1FAC60099CD85 /* ExploreViewModel.swift */; };
+		0C877F912AE1FDC10099CD85 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C877F902AE1FDC10099CD85 /* DeveloperPreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +98,8 @@
 		0C877F872AE1EBD60099CD85 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0C877F892AE1F49C0099CD85 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		0C877F8C2AE1F5ED0099CD85 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		0C877F8E2AE1FAC60099CD85 /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
+		0C877F902AE1FDC10099CD85 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,7 +225,7 @@
 		0C54D6402ADE26EF0027B57B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				0C54D64B2ADE2E550027B57B /* ViewModifiers */,
+				0C877F902AE1FDC10099CD85 /* DeveloperPreview.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -245,6 +249,7 @@
 		0C54D6432ADE271D0027B57B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0C54D64B2ADE2E550027B57B /* ViewModifiers */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				0C54D65E2ADE40590027B57B /* ExploreView.swift */,
+				0C877F8E2AE1FAC60099CD85 /* ExploreViewModel.swift */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -528,6 +534,7 @@
 				0C877F8D2AE1F5ED0099CD85 /* ProfileViewModel.swift in Sources */,
 				0C54D6312ADE26B20027B57B /* ContentView.swift in Sources */,
 				0C54D64F2ADE30800027B57B /* ThreadsLoginSingUpButtonModifier.swift in Sources */,
+				0C877F912AE1FDC10099CD85 /* DeveloperPreview.swift in Sources */,
 				0C54D66B2ADE40E10027B57B /* CreatThreadView.swift in Sources */,
 				0C54D6532ADE35BF0027B57B /* RegistrationViewModel.swift in Sources */,
 				0C54D6552ADE36ED0027B57B /* LoginViewModel.swift in Sources */,
@@ -539,6 +546,7 @@
 				0C3BF4DF2AE0B9FB00B5CBE1 /* ContentViewModel.swift in Sources */,
 				0C877F882AE1EBD60099CD85 /* User.swift in Sources */,
 				0C54D6702ADECDBF0027B57B /* CircularProfileImageView.swift in Sources */,
+				0C877F8F2AE1FAC60099CD85 /* ExploreViewModel.swift in Sources */,
 				0C54D64A2ADE2D290027B57B /* RegistrationView.swift in Sources */,
 				0C54D6692ADE40AC0027B57B /* ProfileView.swift in Sources */,
 			);
