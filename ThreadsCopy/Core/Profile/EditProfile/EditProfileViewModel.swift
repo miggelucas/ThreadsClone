@@ -16,11 +16,19 @@ class EditProfileViewModel: ObservableObject {
     @Published var isPrivateProfile: Bool = false
     
     @Published var profileImage: Image?
+    private var uiImage: UIImage?
+    
     @Published var selectedItem: PhotosPickerItem? {
         didSet {
             Task {
                 await loadImage()
             }
+        }
+    }
+    
+    public func doneButtonPressed() {
+        Task {
+           try await updateProfileData()
         }
     }
     
@@ -33,4 +41,9 @@ class EditProfileViewModel: ObservableObject {
         self.profileImage = Image(uiImage: uiImage)
     }
     
+    
+    private func updateProfileData() async throws {
+        guard let image = self.uiImage else { return }
+        let imageUrl = try? await ImageUploader.uploadImage(image)
+    }
 }

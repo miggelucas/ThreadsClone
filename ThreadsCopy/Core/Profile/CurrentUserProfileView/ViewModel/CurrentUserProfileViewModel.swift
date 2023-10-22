@@ -30,7 +30,6 @@ class CurrentUserProfileViewModel: ObservableObject {
         }.store(in: &cancellables)
         
     }
-    
-   
+     
     
 }

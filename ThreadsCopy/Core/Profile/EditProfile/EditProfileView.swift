@@ -89,7 +89,8 @@ struct EditProfileView: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") {
-                        
+                        viewModel.doneButtonPressed()
+                        dismiss()
                     }
                     .font(.subheadline)
                     .fontWeight(.semibold)
