@@ -28,7 +28,7 @@ class EditProfileViewModel: ObservableObject {
     
     public func doneButtonPressed() {
         Task {
-           try await updateProfileData()
+           try await updateUserData()
         }
     }
     
@@ -39,11 +39,15 @@ class EditProfileViewModel: ObservableObject {
         guard let data = try? await item.loadTransferable(type: Data.self) else { return }
         guard let uiImage = UIImage(data: data) else { return }
         self.profileImage = Image(uiImage: uiImage)
+        self.uiImage = uiImage
     }
     
     
-    private func updateProfileData() async throws {
+    private func updateUserData() async throws {
         guard let image = self.uiImage else { return }
-        let imageUrl = try? await ImageUploader.uploadImage(image)
+        guard let imageUrl = try? await ImageUploader.uploadImage(image) else { return }
+        
+        try await UserService.shared.updateUserProfileImage(withImageUrl: imageUrl)
+        
     }
 }

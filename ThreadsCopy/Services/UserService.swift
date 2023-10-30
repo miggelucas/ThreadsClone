@@ -45,4 +45,18 @@ class UserService {
         self.currentUser = user
         
     }
+    
+    @MainActor
+    func updateUserProfileImage(withImageUrl imageUrl: String) async throws {
+        guard let currenUserId = Auth.auth().currentUser?.uid else { return }
+        do {
+            try await Firestore.firestore().collection("users").document(currenUserId).updateData([
+                "profileImageUrl" : imageUrl
+            ])
+            self.currentUser?.profileImageUrl = imageUrl
+        } catch {
+            print("DEBUG: Failed to update user profile image: \(error.localizedDescription)")
+        }
+     
+    }
 }

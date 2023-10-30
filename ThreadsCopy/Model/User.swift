@@ -12,7 +12,7 @@ struct User: Identifiable, Codable, Hashable {
     let fullName: String
     let email: String
     let username: String
-    let profileImageUrl: String?
+    var profileImageUrl: String?
     let bio: String?
     
     
