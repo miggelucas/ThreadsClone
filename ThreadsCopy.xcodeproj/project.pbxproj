@@ -56,7 +56,7 @@
 		0C54D65F2ADE40590027B57B /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54D65E2ADE40590027B57B /* ExploreView.swift */; };
 		0C54D6662ADE40A00027B57B /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54D6652ADE40A00027B57B /* ActivityView.swift */; };
 		0C54D6692ADE40AC0027B57B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54D6682ADE40AC0027B57B /* ProfileView.swift */; };
-		0C54D66B2ADE40E10027B57B /* CreatThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54D66A2ADE40E10027B57B /* CreatThreadView.swift */; };
+		0C54D66B2ADE40E10027B57B /* CreateThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54D66A2ADE40E10027B57B /* CreateThreadView.swift */; };
 		0C54D66D2ADEBCA60027B57B /* ThreadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54D66C2ADEBCA60027B57B /* ThreadCell.swift */; };
 		0C54D6702ADECDBF0027B57B /* CircularProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54D66F2ADECDBF0027B57B /* CircularProfileImageView.swift */; };
 		0C54D6722ADECE5C0027B57B /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C54D6712ADECE5C0027B57B /* UserCell.swift */; };
@@ -97,7 +97,7 @@
 		0C54D65E2ADE40590027B57B /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		0C54D6652ADE40A00027B57B /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		0C54D6682ADE40AC0027B57B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		0C54D66A2ADE40E10027B57B /* CreatThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatThreadView.swift; sourceTree = "<group>"; };
+		0C54D66A2ADE40E10027B57B /* CreateThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadView.swift; sourceTree = "<group>"; };
 		0C54D66C2ADEBCA60027B57B /* ThreadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadCell.swift; sourceTree = "<group>"; };
 		0C54D66F2ADECDBF0027B57B /* CircularProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProfileImageView.swift; sourceTree = "<group>"; };
 		0C54D6712ADECE5C0027B57B /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
@@ -384,7 +384,7 @@
 		0C54D6602ADE406D0027B57B /* ThreadCreation */ = {
 			isa = PBXGroup;
 			children = (
-				0C54D66A2ADE40E10027B57B /* CreatThreadView.swift */,
+				0C54D66A2ADE40E10027B57B /* CreateThreadView.swift */,
 			);
 			path = ThreadCreation;
 			sourceTree = "<group>";
@@ -597,7 +597,7 @@
 				0C54D6312ADE26B20027B57B /* ContentView.swift in Sources */,
 				0C54D64F2ADE30800027B57B /* ThreadsLoginSingUpButtonModifier.swift in Sources */,
 				0C877F912AE1FDC10099CD85 /* DeveloperPreview.swift in Sources */,
-				0C54D66B2ADE40E10027B57B /* CreatThreadView.swift in Sources */,
+				0C54D66B2ADE40E10027B57B /* CreateThreadView.swift in Sources */,
 				0C5BE2AF2AE2EE5C004B5C3D /* ImageUploader.swift in Sources */,
 				0C44CAD52AE2B9D0005D8985 /* CurrentUserProfileViewModel.swift in Sources */,
 				0C54D6532ADE35BF0027B57B /* RegistrationViewModel.swift in Sources */,

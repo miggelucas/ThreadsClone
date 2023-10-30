@@ -9,23 +9,55 @@ import SwiftUI
 
 struct CircularProfileImageView: View {
     
-    var imageProfile: Image
+    var user: User?
     
-    init(image: Image = Image(systemName: "person.crop.circle")) {
-        self.imageProfile = image
+    init(user: User?) {
+        self.user = user
+    }
+    
+    var imageProfileUrl: URL? {
+        if let imageUrl = user?.profileImageUrl {
+            return URL(string: imageUrl)
+        } else {
+            return nil
+        }
     }
     
     var body: some View {
-        imageProfile
+        if let url = imageProfileUrl {
+            AsyncImage(url: url) { phase in
+                switch phase {
+                case .empty:
+                    imagePlaceholder
+                case .success(let image):
+                    image
+                        .resizable()
+                        .tint(.secondary)
+                        .scaledToFill()
+                        .frame(width: 60, height: 60)
+                        .clipShape(Circle())
+                case .failure(_):
+                    imagePlaceholder
+                @unknown default:
+                    imagePlaceholder
+                }
+            }
+        } else {
+            imagePlaceholder
+        }
+        
+    }
+    
+    private var imagePlaceholder: some View {
+        Image(systemName: "person.crop.circle")
             .resizable()
-            .tint(.primary)
+            .tint(.secondary)
             .scaledToFill()
             .frame(width: 60, height: 60)
             .clipShape(Circle())
-     
     }
 }
 
 #Preview {
-    CircularProfileImageView()
+    CircularProfileImageView(user: User.example())
 }

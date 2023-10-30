@@ -12,7 +12,7 @@ struct EditProfileView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     
-    @StateObject var viewModel: EditProfileViewModel = EditProfileViewModel()
+    @ObservedObject var viewModel: EditProfileViewModel
     
     var body: some View {
         NavigationStack {
@@ -27,20 +27,16 @@ struct EditProfileView: View {
                             Text("Name")
                                 .fontWeight(.semibold)
                             
-                            Text("Thom yorke")
+                            Text(viewModel.user.fullName)
                                 .font(.footnote)
                         }
                         
                         Spacer()
                         
                         PhotosPicker(selection: $viewModel.selectedItem) {
-                            if let image = viewModel.profileImage {
-                                CircularProfileImageView(image: image)
-                            } else {
-                                CircularProfileImageView()
-                            }
+                            CircularProfileImageView(user: viewModel.user)
+
                         }
-                        
                     }
                     
                     Divider()
@@ -104,5 +100,5 @@ struct EditProfileView: View {
 }
 
 #Preview {
-    EditProfileView()
+    EditProfileView(viewModel: EditProfileViewModel(user: User.example()))
 }

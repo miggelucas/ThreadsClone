@@ -1,5 +1,5 @@
 //
-//  CreatThreadView.swift
+//  CreateThreadView.swift
 //  ThreadsCopy
 //
 //  Created by Lucas Migge on 17/10/23.
@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-struct CreatThreadView: View {
+struct CreateThreadView: View {
     @Environment(\.dismiss) var dismiss
+    
+    var user: User?
     
     @State private var caption: String = ""
     
@@ -16,7 +18,7 @@ struct CreatThreadView: View {
         NavigationStack {
             VStack {
                 HStack(alignment: .top) {
-                    CircularProfileImageView()
+                    CircularProfileImageView(user: user)
                     
                     VStack(alignment: .leading, spacing: 4) {
                         Text("miggelucas")
@@ -73,5 +75,5 @@ struct CreatThreadView: View {
 }
 
 #Preview {
-    CreatThreadView()
+    CreateThreadView()
 }

@@ -85,8 +85,10 @@ struct CurrentUserProfileView: View {
                 viewModel.refreshTriggered()
             }
             .sheet(isPresented: $showEditProfileView) {
-                EditProfileView()
-                
+                if let user = viewModel.currentUser {
+                    EditProfileView(viewModel: EditProfileViewModel(user: user))
+                }
+            
             }
         }
     }

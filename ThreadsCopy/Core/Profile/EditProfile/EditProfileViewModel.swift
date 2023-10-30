@@ -11,6 +11,8 @@ import SwiftUI
 
 class EditProfileViewModel: ObservableObject {
     
+    var user: User
+    
     @Published var bio: String = ""
     @Published var link: String = ""
     @Published var isPrivateProfile: Bool = false
@@ -24,6 +26,11 @@ class EditProfileViewModel: ObservableObject {
                 await loadImage()
             }
         }
+    }
+    
+    init(user: User) {
+        self.user = user
+
     }
     
     public func doneButtonPressed() {

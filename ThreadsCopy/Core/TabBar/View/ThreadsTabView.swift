@@ -68,7 +68,7 @@ struct ThreadsTabView: View {
         })
         
         .sheet(isPresented: $shouldShowCreateThreadView, content: {
-            CreatThreadView()
+            CreateThreadView()
         })
         
         

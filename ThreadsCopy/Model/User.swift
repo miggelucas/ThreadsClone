@@ -15,6 +15,15 @@ struct User: Identifiable, Codable, Hashable {
     var profileImageUrl: String?
     let bio: String?
     
-    
 }
  
+
+extension User {
+    static func example() -> User {
+        User(id: "123123123",
+             fullName: "Thomas Yorke",
+             email: "thomyorke@gmail.com",
+             username: "ThomYorke",
+             bio: "Say my name")
+    }
+}

@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ThreadCell: View {
+    var user: User?
+    
     var body: some View {
         VStack {
             
             HStack(alignment: .top, spacing: 12) {
             
-                CircularProfileImageView()
+                CircularProfileImageView(user: user)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     
