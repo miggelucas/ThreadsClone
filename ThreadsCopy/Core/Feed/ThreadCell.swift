@@ -15,7 +15,7 @@ struct ThreadCell: View {
             
             HStack(alignment: .top, spacing: 12) {
             
-                CircularProfileImageView(user: user)
+                CircularProfileImageView(user: user, size: .small)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     

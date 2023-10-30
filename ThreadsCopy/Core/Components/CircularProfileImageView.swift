@@ -6,13 +6,32 @@
 //
 
 import SwiftUI
+import Kingfisher
+
+enum ProfileImageSize {
+    case small, medium, large
+    
+    var dimension: CGFloat {
+        switch self {
+        case .small:
+            return 40
+        case .medium:
+            return 48
+        case .large:
+            return 64
+        }
+    }
+}
+
 
 struct CircularProfileImageView: View {
     
     var user: User?
+    let size: ProfileImageSize
     
-    init(user: User?) {
+    init(user: User?, size: ProfileImageSize) {
         self.user = user
+        self.size = size
     }
     
     var imageProfileUrl: URL? {
@@ -25,23 +44,11 @@ struct CircularProfileImageView: View {
     
     var body: some View {
         if let url = imageProfileUrl {
-            AsyncImage(url: url) { phase in
-                switch phase {
-                case .empty:
-                    imagePlaceholder
-                case .success(let image):
-                    image
-                        .resizable()
-                        .tint(.secondary)
-                        .scaledToFill()
-                        .frame(width: 60, height: 60)
-                        .clipShape(Circle())
-                case .failure(_):
-                    imagePlaceholder
-                @unknown default:
-                    imagePlaceholder
-                }
-            }
+            KFImage(url)
+                .resizable()
+                .scaledToFill()
+                .frame(width: size.dimension, height: size.dimension)
+                .clipShape(Circle())
         } else {
             imagePlaceholder
         }
@@ -53,11 +60,11 @@ struct CircularProfileImageView: View {
             .resizable()
             .tint(.secondary)
             .scaledToFill()
-            .frame(width: 60, height: 60)
+            .frame(width: size.dimension, height: size.dimension)
             .clipShape(Circle())
     }
 }
 
 #Preview {
-    CircularProfileImageView(user: User.example())
+    CircularProfileImageView(user: User.example(), size: .medium)
 }

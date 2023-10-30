@@ -22,7 +22,6 @@ struct EditProfileView: View {
                 
                 VStack {
                     HStack {
-                        
                         VStack(alignment: .leading) {
                             Text("Name")
                                 .fontWeight(.semibold)
@@ -34,8 +33,7 @@ struct EditProfileView: View {
                         Spacer()
                         
                         PhotosPicker(selection: $viewModel.selectedItem) {
-                            CircularProfileImageView(user: viewModel.user)
-
+                            CircularProfileImageView(user: viewModel.user, size: .medium)
                         }
                     }
                     
@@ -55,7 +53,7 @@ struct EditProfileView: View {
                         Text("Link")
                             .fontWeight(.semibold)
                         
-                        TextField("Add lin...", text: $viewModel.link, axis: .vertical)
+                        TextField("Add link...", text: $viewModel.link, axis: .vertical)
                             .font(.footnote)
                     }
                     
