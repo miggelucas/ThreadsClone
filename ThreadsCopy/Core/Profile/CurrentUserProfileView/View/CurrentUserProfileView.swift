@@ -42,42 +42,10 @@ struct CurrentUserProfileView: View {
                             }
                     }
                     
-                    VStack {
-                        HStack {
-                            ForEach(ProfileThreadFilter.allCases) { filter in
-                                VStack {
-                                    Text(filter.title)
-                                        .font(.subheadline)
-                                        .fontWeight(selectedFilter == filter ? .semibold : .regular)
-                                    
-                                    if selectedFilter == filter {
-                                        Rectangle()
-                                            .foregroundStyle(.black)
-                                            .frame(maxWidth: .infinity, maxHeight: 1)
-                                            .matchedGeometryEffect(id: "ID", in: animation)
-                                        
-                                    } else {
-                                        Rectangle()
-                                            .foregroundStyle(.clear)
-                                            .frame(maxWidth: .infinity, maxHeight: 1)
-                                    }
-                                    
-                                }
-                                .onTapGesture {
-                                    withAnimation(.spring(.smooth)) {
-                                        self.selectedFilter = filter
-                                    }
-                                }
-                            }
-                        }
+                    if let user = viewModel.currentUser {
+                        UserContentListView(user: user)
                     }
-                    .padding(.vertical)
                     
-                    LazyVStack {
-                        ForEach(0...100, id: \.self) { thread in
-//                        ThreadCell()
-                        }
-                    }
                 }
             }
             .padding(.horizontal)

@@ -16,15 +16,16 @@ struct FeedView: View {
         
         NavigationStack {
             ScrollView(showsIndicators: false) {
-                LazyVStack {
-                    
-                    ForEach(viewModel.threads) { thread in
-                        ThreadCell(thread: thread)
+                switch viewModel.state {
+                case .loading:
+                    ProgressView()
+                case .content:
+                    LazyVStack {
+                        ForEach(viewModel.threads) { thread in
+                            ThreadCell(thread: thread)
+                        }
                     }
                 }
-            }
-            .onAppear {
-                viewModel.viewDidAppear()
             }
             .refreshable {
                 viewModel.refreshFeed()
@@ -38,7 +39,7 @@ struct FeedView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-//                        authService.singOut()
+                        viewModel.refreshFeed()
                         print("DEBUG: refresh Threads")
                     } label: {
                         Image(systemName: "arrow.counterclockwise")
@@ -46,9 +47,7 @@ struct FeedView: View {
                     }
                 }
             }
-            
         }
-
     }
 }
 

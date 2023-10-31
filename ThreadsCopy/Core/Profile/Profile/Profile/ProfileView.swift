@@ -30,7 +30,7 @@ struct ProfileView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
                 
-                UserContentListView()
+                UserContentListView(user: self.user)
                 
             }
         }

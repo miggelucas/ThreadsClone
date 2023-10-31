@@ -11,13 +11,19 @@ import FirebaseFirestoreSwift
 
 struct ThreadService {
     
+    static var shared: ThreadService = ThreadService()
+    
+    private init() {
+        
+    }
+    
     func uploadThread(_ thread: Thread) async throws {
         guard let threadData = try? Firestore.Encoder().encode(thread) else { return }
         try await Firestore.firestore().collection("threads").addDocument(data: threadData)
+
     }
     
-    
-    func fetchtThreads() async throws -> [Thread] {
+    func fetchThreads() async throws -> [Thread] {
         let snapshot = try await Firestore
             .firestore()
             .collection("threads")
@@ -26,6 +32,23 @@ struct ThreadService {
         
         return snapshot.documents.compactMap { thread in
             try? thread.data(as: Thread.self)
+        }
+    }
+    
+    
+    func fetchUserThreads(uid: String) async throws -> [Thread] {
+        let snapshot = try await Firestore
+            .firestore()
+            .collection("threads")
+            .whereField("ownerId", isEqualTo: uid)
+            .getDocuments()
+        
+        let threads = snapshot.documents.compactMap { thread in
+            try? thread.data(as: Thread.self)
+        }
+        
+        return threads.sorted {
+            $0.timestamp.dateValue() > $1.timestamp.dateValue()
         }
     }
 }
