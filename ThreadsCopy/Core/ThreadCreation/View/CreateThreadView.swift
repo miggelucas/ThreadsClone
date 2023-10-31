@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CreateThreadView: View {
     @Environment(\.dismiss) var dismiss
-    
  
     @StateObject var viewModel: CreateThreadViewModel = CreateThreadViewModel()
     

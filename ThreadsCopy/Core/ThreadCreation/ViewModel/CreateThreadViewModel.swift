@@ -11,7 +11,9 @@ import Firebase
 class CreateThreadViewModel: ObservableObject {
     @Published var caption: String = ""
     
-    var user: User?
+    var user: User? {
+        userService.currentUser
+    }
     
     let threadService: ThreadService
     let userService: UserService
