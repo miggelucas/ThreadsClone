@@ -10,29 +10,33 @@ import SwiftUI
 struct CreateThreadView: View {
     @Environment(\.dismiss) var dismiss
     
-    var user: User?
+ 
+    @StateObject var viewModel: CreateThreadViewModel = CreateThreadViewModel()
     
-    @State private var caption: String = ""
+    var user: User {
+        viewModel.user ?? User.example()
+    }
     
     var body: some View {
         NavigationStack {
             VStack {
                 HStack(alignment: .top) {
-                    CircularProfileImageView(user: user, size: .small)
+                    CircularProfileImageView(user: viewModel.user, size: .small)
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("miggelucas")
+                        Text(user.username)
                             .fontWeight(.semibold)
                         
-                        TextField("Start a thread", text: $caption, axis: .vertical)
+                        TextField("Start a thread", text: $viewModel.caption, axis: .vertical)
                             .font(.footnote)
                     }
                     
                     Spacer()
                     
-                    if !caption.isEmpty {
+                    if !viewModel.isCaptionEmpty{
                         Button {
-                            caption.removeAll()
+                            viewModel.eraseTextButtonPressed()
+                        
                         } label: {
                             Image(systemName: "xmark")
                                 .resizable()
@@ -40,7 +44,6 @@ struct CreateThreadView: View {
                                 .foregroundStyle(.gray)
                         }
                     }
-
                 }
                 
                 Spacer()
@@ -58,13 +61,17 @@ struct CreateThreadView: View {
                 
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Post") {
-                        
+                        viewModel.postButtonPressed() {
+                            dismiss()
+                        }
+                       
                     }
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundStyle(.black)
-                    .opacity(caption.isEmpty ? 0.5 : 1)
-                    .disabled(caption.isEmpty)
+                    .opacity(viewModel.isCaptionEmpty ? 0.5 : 1)
+                    .animation(.smooth, value: viewModel.isCaptionEmpty)
+                    .disabled(viewModel.isCaptionEmpty)
                 }
             }
             .navigationTitle("New Thread")

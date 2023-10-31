@@ -38,7 +38,7 @@ class ExploreViewModel: ObservableObject {
     
     @MainActor
     private func fecthUSers() async throws {
-        self.users = try await UserService.fetchUser()
+        self.users = try await UserService.fetchUsers()
     }
     
     

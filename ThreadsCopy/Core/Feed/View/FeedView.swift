@@ -10,7 +10,7 @@ import SwiftUI
 struct FeedView: View {
     @Environment(\.colorScheme) var colorScheme
     
-    var authService = AuthService.shared
+    @StateObject var viewModel = FeedViewModel()
     
     var body: some View {
         
@@ -18,13 +18,16 @@ struct FeedView: View {
             ScrollView(showsIndicators: false) {
                 LazyVStack {
                     
-                    ForEach(0...10, id: \.self) { thread in
-                        ThreadCell()
+                    ForEach(viewModel.threads) { thread in
+                        ThreadCell(thread: thread)
                     }
                 }
             }
+            .onAppear {
+                viewModel.viewDidAppear()
+            }
             .refreshable {
-                print("DEBUG: refresh Threads")
+                viewModel.refreshFeed()
             }
             .navigationTitle("Threads")
             .navigationBarTitleDisplayMode(.inline)
@@ -35,7 +38,7 @@ struct FeedView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        authService.singOut()
+//                        authService.singOut()
                         print("DEBUG: refresh Threads")
                     } label: {
                         Image(systemName: "arrow.counterclockwise")

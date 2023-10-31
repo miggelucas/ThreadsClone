@@ -20,7 +20,7 @@ class UserService {
         }
     }
     
-    static func fetchUser() async throws -> [User] {
+    public static func fetchUsers() async throws -> [User] {
         guard let currentUserID = Auth.auth().currentUser?.uid else { return [] }
         let snapshot = try await Firestore.firestore().collectionGroup("users").getDocuments()
         let users = snapshot.documents.compactMap { userData in
@@ -30,6 +30,12 @@ class UserService {
         return users.filter { user in
             user.id != currentUserID
         }
+    }
+    
+    public func fetchUser(withUis uid: String) async throws -> User {
+        let snapshot = try await Firestore.firestore().collection("users").document(uid).getDocument()
+        let user = try snapshot.data(as: User.self)
+        return user
     }
     
     
