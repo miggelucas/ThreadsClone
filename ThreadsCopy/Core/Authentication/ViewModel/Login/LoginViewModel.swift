@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 class LoginViewModel: ObservableObject {
     
@@ -31,21 +32,26 @@ class LoginViewModel: ObservableObject {
                 print("DEBUG: Login sucessful")
                 
             case .failure(let authError):
-                shouldShowAlert = true
-                switch authError.code {
-                case .wrongPassword:
-                    alertMessage = "DEBUG: Wrong passoword"
-                    
-                case .invalidEmail:
-                    alertMessage = "DEBUG: invalid Email"
-                    
-                default:
-                    alertMessage = authError.localizedDescription
-                }
+                handleWithError(authError)
+                
             }
         }
-        
     }
     
+    
+    private func handleWithError(_ authError: AuthErrorCode) {
+        switch authError.code {
+        case .wrongPassword:
+            alertMessage = "DEBUG: Wrong passoword"
+            
+        case .invalidEmail:
+            alertMessage = "DEBUG: invalid Email"
+            
+        default:
+            alertMessage = authError.localizedDescription
+        }
+        
+        shouldShowAlert = true
+    }
     
 }
