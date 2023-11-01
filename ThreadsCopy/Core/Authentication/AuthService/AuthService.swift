@@ -23,33 +23,25 @@ class AuthService: ObservableObject {
     }
     
     var authDelegate: AuthServiceDelegate?
+    var userService: UserService
     
-    init(userSession: FirebaseAuth.User? = Auth.auth().currentUser) {
+    init(userSession: FirebaseAuth.User? = Auth.auth().currentUser, userService: UserService = UserService.shared) {
         self.userSession = userSession
+        self.userService = userService
     }
     
     @MainActor
-    func login(withEmail email: String, password: String) async throws {
-        
+    func login(withEmail email: String, password: String) async -> Result<String?, AuthErrorCode> {
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             userSession = result.user
             
-            print("DEBUG: Logged user \(result.user.uid)")
+            return .success(nil)
+            
         } catch  {
             if let nsError = error as NSError? {
-                let authError = AuthErrorCode(_nsError: nsError).code
-                switch authError {
-                case .wrongPassword:
-                    print("DEBUG: Wrong passoword")
-                    
-                case .invalidEmail:
-                    print("DEBUG: invalid Email")
-                    
-                default:
-                    print("DEBUG: Failed to log user\(error.localizedDescription)")
-                    
-                }
+                let authError = AuthErrorCode(_nsError: nsError)
+                return .failure(authError)
             }
         }
     }
@@ -81,7 +73,7 @@ class AuthService: ObservableObject {
         let user = User(id: id, fullName: fullName, email: email, username: userName, profileImageUrl: nil, bio: nil)
         guard let userData = try? Firestore.Encoder().encode(user) else { return }
         try await Firestore.firestore().collection("users").document(id).setData(userData)
-        UserService.shared.currentUser = user
+        userService.currentUser = user
         
     }
     
@@ -89,8 +81,7 @@ class AuthService: ObservableObject {
     public func singOut() {
         try? Auth.auth().signOut()
         self.userSession = nil
-        UserService.shared.singOut()
-
+        userService.singOut()
         
     }
 }

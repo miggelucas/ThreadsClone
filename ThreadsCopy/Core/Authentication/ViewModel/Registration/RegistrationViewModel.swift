@@ -19,10 +19,10 @@ class RegistrationViewModel: ObservableObject {
     @Published var shouldShowAlert: Bool = false
     @Published var alertMessage: String = ""
     
-    private let service: AuthService
+    private let authService: AuthService
     
     init(service: AuthService = AuthService.shared) {
-        self.service = service
+        self.authService = service
     }
     
     
@@ -36,7 +36,7 @@ class RegistrationViewModel: ObservableObject {
     @MainActor
     public func singUpPressed() {
         Task {
-            try await createUser()
+            await createUser()
         }
     }
     
@@ -56,8 +56,8 @@ class RegistrationViewModel: ObservableObject {
         shouldShowAlert = true
     }
     
-    func createUser() async throws {
-        if let authError = await service.createUser(withEmail: email, password: password, fullName: fullName, userName: userName) {
+    func createUser() async {
+        if let authError = await authService.createUser(withEmail: email, password: password, fullName: fullName, userName: userName) {
             handleWithError(authError)
         }
     }

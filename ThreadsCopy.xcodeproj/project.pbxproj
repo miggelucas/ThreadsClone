@@ -166,11 +166,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C28FF2B2AE0166900994E12 /* ViewModel */ = {
+		0C00CC6B2AF289DC00E1676F /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				0C54D6542ADE36ED0027B57B /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0C00CC6C2AF289E200E1676F /* Registration */ = {
+			isa = PBXGroup;
+			children = (
 				0C54D6522ADE35BF0027B57B /* RegistrationViewModel.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		0C28FF2B2AE0166900994E12 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0C00CC6C2AF289E200E1676F /* Registration */,
+				0C00CC6B2AF289DC00E1676F /* Login */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
