@@ -10,20 +10,31 @@ import Firebase
 
 class LoginViewModel: ObservableObject {
     
+    enum State {
+        case idle, waitingApiResponse
+    }
+    
+    @Published var state: State = .idle
+    
     @Published var email: String = ""
     @Published var password: String = ""
     
     @Published var shouldShowAlert: Bool = false
     @Published var alertMessage: String = ""
     
-    var authService = AuthService.shared
+    var authService: AuthServiceProtocol
     
     var isLoginEnable: Bool {
         return email.contains("@") && !password.isEmpty
     }
     
+    init(authService: AuthServiceProtocol = AuthService.shared) {
+        self.authService = authService
+    }
     
     public func loginPressed() {
+        self.state = .waitingApiResponse
+        
         Task {
             let result = await authService.login(withEmail: email, password: password)
             
@@ -33,6 +44,7 @@ class LoginViewModel: ObservableObject {
                 
             case .failure(let authError):
                 handleWithError(authError)
+                self.state = .idle
                 
             }
         }

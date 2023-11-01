@@ -52,10 +52,9 @@ struct LoginView: View {
     
     private var textFieldSection: some View {
         VStack {
-            
             TextField("Enter your email", text: $viewModel.email)
+                .textInputAutocapitalization(.never)
                 .keyboardType(.emailAddress)
-                .textInputAutocapitalization(.none)
                 .modifier(ThreadsTextFieldModifier())
 
             
@@ -67,23 +66,37 @@ struct LoginView: View {
     
     @ViewBuilder
     private var loginButtonSection: some View {
-        NavigationLink {
-            EmptyView()
-        } label: {
-            Text("Forgot Password?")
-                .font(.footnote)
-                .fontWeight(.semibold)
-                .padding(.vertical)
-                .padding(.trailing, 38)
-                .tint(.primary)
-                .frame(maxWidth: .infinity, alignment: .trailing)
+        
+        HStack {
+            Spacer()
+            
+            NavigationLink {
+                EmptyView()
+            } label: {
+                Text("Forgot Password?")
+                    .font(.footnote)
+                    .fontWeight(.semibold)
+                    .padding(.vertical)
+                    .padding(.trailing, 38)
+                    .tint(.primary)
+            }
         }
        
         Button {
             viewModel.loginPressed()
         } label: {
-            Text("Login")
-                .modifier(ThreadsLoginSingUpButtonModifier(colorMode: self.colorScheme))
+            switch viewModel.state {
+            case .idle:
+                Text("Login")
+                    .modifier(ThreadsLoginSingUpButtonModifier(colorMode: self.colorScheme))
+            case .waitingApiResponse:
+                ProgressView()
+                    .tint(colorScheme == .light ? Color.white : Color.black)
+                    .frame(width: 352, height: 44)
+                    .background(Color.primary)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                
+            }
         }
         .opacity(viewModel.isLoginEnable ? 1 : 0.75)
         .animation(.smooth, value: viewModel.isLoginEnable)
