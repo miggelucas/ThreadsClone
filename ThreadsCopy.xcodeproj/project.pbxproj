@@ -76,9 +76,24 @@
 		0C877F8D2AE1F5ED0099CD85 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C877F8C2AE1F5ED0099CD85 /* ProfileViewModel.swift */; };
 		0C877F8F2AE1FAC60099CD85 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C877F8E2AE1FAC60099CD85 /* ExploreViewModel.swift */; };
 		0C877F912AE1FDC10099CD85 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C877F902AE1FDC10099CD85 /* DeveloperPreview.swift */; };
+		0CA919B72AF2C9AC0086C9C9 /* ThreadsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919B62AF2C9AC0086C9C9 /* ThreadsTests.swift */; };
+		0CA919BF2AF2CBB80086C9C9 /* ImageUploaderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919BE2AF2CBB80086C9C9 /* ImageUploaderProtocol.swift */; };
+		0CA919C12AF2CD000086C9C9 /* ThreadServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C02AF2CD000086C9C9 /* ThreadServiceProtocol.swift */; };
+		0CA919C32AF2FF630086C9C9 /* AnyUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C22AF2FF630086C9C9 /* AnyUserService.swift */; };
+		0CA919C52AF302220086C9C9 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C42AF302220086C9C9 /* AuthServiceProtocol.swift */; };
 		0CD6F2392AF18CA300D413B0 /* UserContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6F2382AF18CA300D413B0 /* UserContentListViewModel.swift */; };
 		0CD6F23B2AF1971400D413B0 /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6F23A2AF1971400D413B0 /* Timestamp.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0CA919B82AF2C9AC0086C9C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C54D6232ADE26B20027B57B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C54D62A2ADE26B20027B57B;
+			remoteInfo = ThreadsCopy;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0C28FF2D2AE0172200994E12 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -123,6 +138,12 @@
 		0C877F8C2AE1F5ED0099CD85 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		0C877F8E2AE1FAC60099CD85 /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		0C877F902AE1FDC10099CD85 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
+		0CA919B42AF2C9AC0086C9C9 /* ThreadsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThreadsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CA919B62AF2C9AC0086C9C9 /* ThreadsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsTests.swift; sourceTree = "<group>"; };
+		0CA919BE2AF2CBB80086C9C9 /* ImageUploaderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploaderProtocol.swift; sourceTree = "<group>"; };
+		0CA919C02AF2CD000086C9C9 /* ThreadServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadServiceProtocol.swift; sourceTree = "<group>"; };
+		0CA919C22AF2FF630086C9C9 /* AnyUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyUserService.swift; sourceTree = "<group>"; };
+		0CA919C42AF302220086C9C9 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
 		0CD6F2382AF18CA300D413B0 /* UserContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListViewModel.swift; sourceTree = "<group>"; };
 		0CD6F23A2AF1971400D413B0 /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +184,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0CA919B12AF2C9AC0086C9C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -195,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				0C28FF2D2AE0172200994E12 /* AuthService.swift */,
+				0CA919C42AF302220086C9C9 /* AuthServiceProtocol.swift */,
 				0C877F832AE1E1EC0099CD85 /* AuthServiceDelegate.swift */,
 			);
 			path = AuthService;
@@ -270,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				0C54D62D2ADE26B20027B57B /* ThreadsCopy */,
+				0CA919B52AF2C9AC0086C9C9 /* ThreadsTests */,
 				0C54D62C2ADE26B20027B57B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -278,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				0C54D62B2ADE26B20027B57B /* ThreadsCopy.app */,
+				0CA919B42AF2C9AC0086C9C9 /* ThreadsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,6 +382,7 @@
 		0C54D6422ADE27100027B57B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				0CA919BD2AF2CB750086C9C9 /* Protocols */,
 				0C877F892AE1F49C0099CD85 /* UserService.swift */,
 				0C52C9412AF0769900F84757 /* ThreadService.swift */,
 				0C5BE2AE2AE2EE5C004B5C3D /* ImageUploader.swift */,
@@ -543,6 +575,24 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		0CA919B52AF2C9AC0086C9C9 /* ThreadsTests */ = {
+			isa = PBXGroup;
+			children = (
+				0CA919B62AF2C9AC0086C9C9 /* ThreadsTests.swift */,
+			);
+			path = ThreadsTests;
+			sourceTree = "<group>";
+		};
+		0CA919BD2AF2CB750086C9C9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0CA919BE2AF2CBB80086C9C9 /* ImageUploaderProtocol.swift */,
+				0CA919C02AF2CD000086C9C9 /* ThreadServiceProtocol.swift */,
+				0CA919C22AF2FF630086C9C9 /* AnyUserService.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		0CD6F2362AF18C8200D413B0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -610,6 +660,24 @@
 			productReference = 0C54D62B2ADE26B20027B57B /* ThreadsCopy.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0CA919B32AF2C9AC0086C9C9 /* ThreadsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0CA919BC2AF2C9AC0086C9C9 /* Build configuration list for PBXNativeTarget "ThreadsTests" */;
+			buildPhases = (
+				0CA919B02AF2C9AC0086C9C9 /* Sources */,
+				0CA919B12AF2C9AC0086C9C9 /* Frameworks */,
+				0CA919B22AF2C9AC0086C9C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0CA919B92AF2C9AC0086C9C9 /* PBXTargetDependency */,
+			);
+			name = ThreadsTests;
+			productName = ThreadsTests;
+			productReference = 0CA919B42AF2C9AC0086C9C9 /* ThreadsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -622,6 +690,10 @@
 				TargetAttributes = {
 					0C54D62A2ADE26B20027B57B = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					0CA919B32AF2C9AC0086C9C9 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 0C54D62A2ADE26B20027B57B;
 					};
 				};
 			};
@@ -643,6 +715,7 @@
 			projectRoot = "";
 			targets = (
 				0C54D62A2ADE26B20027B57B /* ThreadsCopy */,
+				0CA919B32AF2C9AC0086C9C9 /* ThreadsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -658,6 +731,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0CA919B22AF2C9AC0086C9C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -667,6 +747,7 @@
 			files = (
 				0C52C9462AF086B700F84757 /* FeedViewModel.swift in Sources */,
 				0C5BE2AD2AE2EC17004B5C3D /* EditProfileViewModel.swift in Sources */,
+				0CA919C12AF2CD000086C9C9 /* ThreadServiceProtocol.swift in Sources */,
 				0C877F842AE1E1EC0099CD85 /* AuthServiceDelegate.swift in Sources */,
 				0C877F8A2AE1F49C0099CD85 /* UserService.swift in Sources */,
 				0C54D65F2ADE40590027B57B /* ExploreView.swift in Sources */,
@@ -677,6 +758,7 @@
 				0C54D67D2ADF88A30027B57B /* ThreadTabViewOption.swift in Sources */,
 				0C54D6482ADE27680027B57B /* LoginView.swift in Sources */,
 				0C54D6722ADECE5C0027B57B /* UserCell.swift in Sources */,
+				0CA919C52AF302220086C9C9 /* AuthServiceProtocol.swift in Sources */,
 				0C28FF2E2AE0172200994E12 /* AuthService.swift in Sources */,
 				0C44CAD82AE2BBB3005D8985 /* ProfileHeaderView.swift in Sources */,
 				0C54D6762ADF79C70027B57B /* ProfileThreadFilter.swift in Sources */,
@@ -694,7 +776,9 @@
 				0C54D6582ADE3C420027B57B /* ThreadsTabView.swift in Sources */,
 				0C54D64D2ADE2E7B0027B57B /* ThreadsTextFieldModifier.swift in Sources */,
 				0C54D6792ADF7F870027B57B /* EditProfileView.swift in Sources */,
+				0CA919C32AF2FF630086C9C9 /* AnyUserService.swift in Sources */,
 				0C52C93C2AF0759200F84757 /* Thread.swift in Sources */,
+				0CA919BF2AF2CBB80086C9C9 /* ImageUploaderProtocol.swift in Sources */,
 				0C52C9422AF0769900F84757 /* ThreadService.swift in Sources */,
 				0C54D66D2ADEBCA60027B57B /* ThreadCell.swift in Sources */,
 				0C54D62F2ADE26B20027B57B /* ThreadsCopyApp.swift in Sources */,
@@ -708,7 +792,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0CA919B02AF2C9AC0086C9C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0CA919B72AF2C9AC0086C9C9 /* ThreadsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0CA919B92AF2C9AC0086C9C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0C54D62A2ADE26B20027B57B /* ThreadsCopy */;
+			targetProxy = 0CA919B82AF2C9AC0086C9C9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0C54D6372ADE26B30027B57B /* Debug */ = {
@@ -888,6 +988,42 @@
 			};
 			name = Release;
 		};
+		0CA919BA2AF2C9AC0086C9C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 749Q737TF5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pb.PedalBoard.ThreadsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThreadsCopy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ThreadsCopy";
+			};
+			name = Debug;
+		};
+		0CA919BB2AF2C9AC0086C9C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 749Q737TF5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pb.PedalBoard.ThreadsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ThreadsCopy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ThreadsCopy";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -905,6 +1041,15 @@
 			buildConfigurations = (
 				0C54D63A2ADE26B30027B57B /* Debug */,
 				0C54D63B2ADE26B30027B57B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0CA919BC2AF2C9AC0086C9C9 /* Build configuration list for PBXNativeTarget "ThreadsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0CA919BA2AF2C9AC0086C9C9 /* Debug */,
+				0CA919BB2AF2C9AC0086C9C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

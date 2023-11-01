@@ -23,7 +23,10 @@ class ExploreViewModel: ObservableObject {
         }
     }
     
-    init(users: [User] = []) {
+    var userService: AnyUserService
+    
+    init(userService: AnyUserService = UserService.shared) {
+        self.userService = userService
         Task {
             try await fecthUSers()
         }
@@ -38,7 +41,7 @@ class ExploreViewModel: ObservableObject {
     
     @MainActor
     private func fecthUSers() async throws {
-        self.users = try await UserService.fetchUsers()
+        self.users = try await userService.fetchUsers()
     }
     
     

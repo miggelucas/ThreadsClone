@@ -19,9 +19,9 @@ class RegistrationViewModel: ObservableObject {
     @Published var shouldShowAlert: Bool = false
     @Published var alertMessage: String = ""
     
-    private let authService: AuthService
+    private let authService: AuthServiceProtocol
     
-    init(service: AuthService = AuthService.shared) {
+    init(service: AuthServiceProtocol = AuthService.shared) {
         self.authService = service
     }
     

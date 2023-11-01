@@ -16,10 +16,10 @@ class FeedViewModel: ObservableObject {
     @Published var threads: [Thread] = []
     @Published var state: State = .loading
     
-    var threadService: ThreadService
-    var userService: UserService
+    var threadService: ThreadServiceProtocol
+    var userService: UserServiceProtocol
     
-    init(threadService: ThreadService = ThreadService.shared, userService: UserService = UserService.shared) {
+    init(threadService: ThreadServiceProtocol = ThreadService.shared, userService: UserServiceProtocol = UserService.shared) {
         self.threadService = threadService
         self.userService = userService
         

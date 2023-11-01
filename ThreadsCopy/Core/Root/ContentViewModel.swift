@@ -14,9 +14,9 @@ class ContentViewModel: ObservableObject {
     
     @Published var userSession: FirebaseAuth.User?
     
-    var authService: AuthService
+    var authService: AuthServiceProtocol
     
-    init(authService: AuthService = AuthService.shared) {
+    init(authService: AuthServiceProtocol = AuthService.shared) {
         self.authService = authService
         self.userSession = authService.userSession
         self.authService.authDelegate = self

@@ -11,10 +11,9 @@ import FirebaseFirestoreSwift
 import Firebase
 
 
-
-class AuthService: ObservableObject {
+class AuthService: ObservableObject, AuthServiceProtocol {
     
-    static var shared: AuthService = AuthService()
+    static var shared: AuthServiceProtocol = AuthService()
     
     var userSession: FirebaseAuth.User? {
         didSet {
@@ -23,9 +22,9 @@ class AuthService: ObservableObject {
     }
     
     var authDelegate: AuthServiceDelegate?
-    var userService: UserService
+    var userService: AnyUserService
     
-    init(userSession: FirebaseAuth.User? = Auth.auth().currentUser, userService: UserService = UserService.shared) {
+    init(userSession: FirebaseAuth.User? = Auth.auth().currentUser, userService: AnyUserService = UserService.shared) {
         self.userSession = userSession
         self.userService = userService
     }

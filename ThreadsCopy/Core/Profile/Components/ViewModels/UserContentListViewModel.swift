@@ -12,9 +12,9 @@ class UserContentListViewModel: ObservableObject {
     @Published var threads: [Thread] = []
     
     var user: User
-    var threadService: ThreadService
+    var threadService: ThreadServiceProtocol
     
-    init(user: User, threadService: ThreadService = ThreadService.shared) {
+    init(user: User, threadService: ThreadServiceProtocol = ThreadService.shared) {
         self.user = user
         self.threadService = threadService
         

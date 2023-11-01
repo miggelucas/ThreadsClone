@@ -10,7 +10,7 @@ import Firebase
 import FirebaseStorage
 
 
-struct ImageUploader {
+struct ImageUploader: ImageUploaderProtocol {
     static func uploadImage(_ image: UIImage) async throws -> String? {
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return nil }
         let fileName = UUID().uuidString

@@ -8,19 +8,19 @@
 import Firebase
 import FirebaseFirestoreSwift
 
-class UserService {
+
+class UserService: AnyUserService {
     
-    @Published var currentUser: User?
+    static let shared: AnyUserService = UserService()
     
-    static let shared: UserService = UserService()
-    
-    init () {
+    required init() {
+        super.init()
         Task {
             try await fetchCurrentUser()
         }
     }
     
-    public static func fetchUsers() async throws -> [User] {
+    public func fetchUsers() async throws -> [User] {
         guard let currentUserID = Auth.auth().currentUser?.uid else { return [] }
         let snapshot = try await Firestore.firestore().collectionGroup("users").getDocuments()
         let users = snapshot.documents.compactMap { userData in

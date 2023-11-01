@@ -9,9 +9,10 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-struct ThreadService {
+
+struct ThreadService: ThreadServiceProtocol {
     
-    static var shared: ThreadService = ThreadService()
+    static var shared: ThreadServiceProtocol = ThreadService()
     
     private init() {
         

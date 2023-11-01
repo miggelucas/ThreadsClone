@@ -15,10 +15,10 @@ class CreateThreadViewModel: ObservableObject {
         userService.currentUser
     }
     
-    let threadService: ThreadService
-    let userService: UserService
+    let threadService: ThreadServiceProtocol
+    let userService: AnyUserService
     
-    init(threadService: ThreadService = ThreadService.shared, userService: UserService = UserService.shared) {
+    init(threadService: ThreadServiceProtocol = ThreadService.shared, userService: AnyUserService = UserService.shared) {
         self.threadService = threadService
         self.userService = userService
     }
