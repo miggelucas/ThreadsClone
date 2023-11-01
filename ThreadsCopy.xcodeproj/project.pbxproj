@@ -81,6 +81,8 @@
 		0CA919C12AF2CD000086C9C9 /* ThreadServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C02AF2CD000086C9C9 /* ThreadServiceProtocol.swift */; };
 		0CA919C32AF2FF630086C9C9 /* AnyUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C22AF2FF630086C9C9 /* AnyUserService.swift */; };
 		0CA919C52AF302220086C9C9 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C42AF302220086C9C9 /* AuthServiceProtocol.swift */; };
+		0CA919C72AF306F60086C9C9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C62AF306F60086C9C9 /* SettingsView.swift */; };
+		0CA919C92AF307DB0086C9C9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C82AF307DB0086C9C9 /* SettingsViewModel.swift */; };
 		0CD6F2392AF18CA300D413B0 /* UserContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6F2382AF18CA300D413B0 /* UserContentListViewModel.swift */; };
 		0CD6F23B2AF1971400D413B0 /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6F23A2AF1971400D413B0 /* Timestamp.swift */; };
 /* End PBXBuildFile section */
@@ -144,6 +146,8 @@
 		0CA919C02AF2CD000086C9C9 /* ThreadServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadServiceProtocol.swift; sourceTree = "<group>"; };
 		0CA919C22AF2FF630086C9C9 /* AnyUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyUserService.swift; sourceTree = "<group>"; };
 		0CA919C42AF302220086C9C9 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
+		0CA919C62AF306F60086C9C9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		0CA919C82AF307DB0086C9C9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		0CD6F2382AF18CA300D413B0 /* UserContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListViewModel.swift; sourceTree = "<group>"; };
 		0CD6F23A2AF1971400D413B0 /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -229,19 +233,20 @@
 			path = AuthService;
 			sourceTree = "<group>";
 		};
-		0C44CACF2AE2B960005D8985 /* CurrentUserProfileView */ = {
+		0C44CACF2AE2B960005D8985 /* CurrentUserProfile */ = {
 			isa = PBXGroup;
 			children = (
 				0C44CAD32AE2B9BF005D8985 /* ViewModel */,
 				0C44CAD22AE2B9B8005D8985 /* View */,
 			);
-			path = CurrentUserProfileView;
+			path = CurrentUserProfile;
 			sourceTree = "<group>";
 		};
 		0C44CAD22AE2B9B8005D8985 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				0C44CAD02AE2B973005D8985 /* CurrentUserProfileView.swift */,
+				0CA919C62AF306F60086C9C9 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				0C44CAD42AE2B9D0005D8985 /* CurrentUserProfileViewModel.swift */,
+				0CA919C82AF307DB0086C9C9 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -501,7 +507,7 @@
 				0C54D6742ADF79B60027B57B /* Model */,
 				0C44CAD62AE2BBA1005D8985 /* Components */,
 				0C54D6772ADF7F670027B57B /* EditProfile */,
-				0C44CACF2AE2B960005D8985 /* CurrentUserProfileView */,
+				0C44CACF2AE2B960005D8985 /* CurrentUserProfile */,
 				0C5BE2AB2AE2EB08004B5C3D /* Profile */,
 			);
 			path = Profile;
@@ -746,6 +752,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C52C9462AF086B700F84757 /* FeedViewModel.swift in Sources */,
+				0CA919C92AF307DB0086C9C9 /* SettingsViewModel.swift in Sources */,
 				0C5BE2AD2AE2EC17004B5C3D /* EditProfileViewModel.swift in Sources */,
 				0CA919C12AF2CD000086C9C9 /* ThreadServiceProtocol.swift in Sources */,
 				0C877F842AE1E1EC0099CD85 /* AuthServiceDelegate.swift in Sources */,
@@ -775,6 +782,7 @@
 				0C54D6552ADE36ED0027B57B /* LoginViewModel.swift in Sources */,
 				0C54D6582ADE3C420027B57B /* ThreadsTabView.swift in Sources */,
 				0C54D64D2ADE2E7B0027B57B /* ThreadsTextFieldModifier.swift in Sources */,
+				0CA919C72AF306F60086C9C9 /* SettingsView.swift in Sources */,
 				0C54D6792ADF7F870027B57B /* EditProfileView.swift in Sources */,
 				0CA919C32AF2FF630086C9C9 /* AnyUserService.swift in Sources */,
 				0C52C93C2AF0759200F84757 /* Thread.swift in Sources */,

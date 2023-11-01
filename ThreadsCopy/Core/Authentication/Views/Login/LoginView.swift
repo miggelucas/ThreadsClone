@@ -32,7 +32,7 @@ struct LoginView: View {
                 footerButtonSection
                 .padding(.vertical, 16)
             }
-            .alert("Failed to create User", isPresented: $viewModel.shouldShowAlert) {
+            .alert("Login Error", isPresented: $viewModel.shouldShowAlert) {
                 
             } message: {
                 Text(viewModel.alertMessage)

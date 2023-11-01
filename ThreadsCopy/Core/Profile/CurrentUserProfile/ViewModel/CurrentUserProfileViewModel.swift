@@ -26,11 +26,16 @@ class CurrentUserProfileViewModel: ObservableObject {
         setupSubscribers()
     }
     
+    public func settingsButtonPressed() {
+        
+    }
+    
     private func setupSubscribers() {
         userService.$currentUser.sink { [weak self] user in
             self?.currentUser = user
         }.store(in: &cancellables)
         
     }
+
     
 }

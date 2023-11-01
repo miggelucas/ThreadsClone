@@ -48,6 +48,18 @@ struct CurrentUserProfileView: View {
                     
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink {
+                        SettingsView()
+                    } label: {
+                        Label("Settings", systemImage: "gear")
+                           
+                    }
+                    .tint(.primary)
+
+                }
+            }
             .padding(.horizontal)
             .refreshable {
                 viewModel.refreshTriggered()
