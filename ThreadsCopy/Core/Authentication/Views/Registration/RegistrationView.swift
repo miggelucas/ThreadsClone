@@ -53,7 +53,7 @@ struct RegistrationView: View {
         VStack {
             
             TextField("Enter your email", text: $viewModel.email)
-                .textInputAutocapitalization(.none)
+                .textInputAutocapitalization(.never)
                 .keyboardType(.emailAddress)
                 .modifier(ThreadsTextFieldModifier())
             
@@ -76,9 +76,22 @@ struct RegistrationView: View {
     private var signUpButtonSection: some View {
         Button {
             viewModel.singUpPressed()
+            
         } label: {
-            Text("Sign Up")
-                .modifier(ThreadsLoginSingUpButtonModifier(colorMode: colorScheme))
+            switch viewModel.state {
+            case .idle:
+                Text("Sign Up")
+                    .modifier(ThreadsLoginSingUpButtonModifier(colorMode: colorScheme))
+                
+            case .waitingApiResponse:
+                ProgressView()
+                    .tint(colorScheme == .light ? Color.white : Color.black)
+                    .frame(width: 352, height: 44)
+                    .background(Color.primary)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                
+            }
+           
         }
         .opacity(viewModel.isSingUpEnable ? 1 : 0.75)
         .animation(.smooth, value: viewModel.isSingUpEnable)

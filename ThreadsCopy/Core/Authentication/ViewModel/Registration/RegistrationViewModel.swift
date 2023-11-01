@@ -11,6 +11,13 @@ import FirebaseAuth
 
 class RegistrationViewModel: ObservableObject {
     
+    enum State: String {
+        case idle, waitingApiResponse
+        
+    }
+    
+    @Published var state: State = .idle
+    
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var fullName: String = ""
@@ -25,7 +32,6 @@ class RegistrationViewModel: ObservableObject {
         self.authService = service
     }
     
-    
     public var isSingUpEnable: Bool {
         return email.contains("@")
         && password.count > 5
@@ -35,8 +41,20 @@ class RegistrationViewModel: ObservableObject {
     
     @MainActor
     public func singUpPressed() {
+        if !isSingUpEnable { return }
+        
+        if state == .waitingApiResponse { return }
+        
         Task {
+            self.state = .waitingApiResponse
             await createUser()
+        }
+    }
+    
+    func createUser() async {
+        if let authError = await authService.createUser(withEmail: email, password: password, fullName: fullName, userName: userName) {
+            self.state = .idle
+            handleWithError(authError)
         }
     }
     
@@ -48,17 +66,10 @@ class RegistrationViewModel: ObservableObject {
         case .weakPassword:
             alertMessage = "Your password is too weak. Try a stronger password"
             
-            
         default:
             alertMessage = authError.localizedDescription
             
         }
         shouldShowAlert = true
-    }
-    
-    func createUser() async {
-        if let authError = await authService.createUser(withEmail: email, password: password, fullName: fullName, userName: userName) {
-            handleWithError(authError)
-        }
     }
 }

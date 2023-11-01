@@ -32,20 +32,23 @@ class LoginViewModel: ObservableObject {
         self.authService = authService
     }
     
+    @MainActor
     public func loginPressed() {
-        self.state = .waitingApiResponse
-        
-        Task {
-            let result = await authService.login(withEmail: email, password: password)
+        if state != .waitingApiResponse {
+            state = .waitingApiResponse
             
-            switch result {
-            case .success:
-                print("DEBUG: Login sucessful")
+            Task {
+                let result = await authService.login(withEmail: email, password: password)
                 
-            case .failure(let authError):
-                handleWithError(authError)
-                self.state = .idle
-                
+                switch result {
+                case .success:
+                    print("DEBUG: Login sucessful")
+                    
+                case .failure(let authError):
+                    handleWithError(authError)
+                    self.state = .idle
+                    
+                }
             }
         }
     }
