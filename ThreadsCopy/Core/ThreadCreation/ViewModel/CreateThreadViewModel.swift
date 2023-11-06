@@ -12,13 +12,13 @@ class CreateThreadViewModel: ObservableObject {
     @Published var caption: String = ""
     
     var user: User? {
-        userService.currentUser
+        userService.currentUser.value
     }
     
     let threadService: ThreadServiceProtocol
-    let userService: AnyUserService
+    let userService: UserServiceProtocol
     
-    init(threadService: ThreadServiceProtocol = ThreadService.shared, userService: AnyUserService = UserService.shared) {
+    init(threadService: ThreadServiceProtocol = ThreadService.shared, userService: UserServiceProtocol = UserService.shared) {
         self.threadService = threadService
         self.userService = userService
     }
@@ -39,7 +39,7 @@ class CreateThreadViewModel: ObservableObject {
     }
     
     private func uploadThread() async throws {
-        if let safeUser = userService.currentUser {
+        if let safeUser = userService.currentUser.value {
             let newThread = Thread(threadID: UUID().uuidString,
                                    ownerId:  safeUser.id,
                                    caption: self.caption,

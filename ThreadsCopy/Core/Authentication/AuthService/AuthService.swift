@@ -22,9 +22,9 @@ class AuthService: ObservableObject, AuthServiceProtocol {
     }
     
     var authDelegate: AuthServiceDelegate?
-    var userService: AnyUserService
+    var userService: UserServiceProtocol
     
-    init(userSession: FirebaseAuth.User? = Auth.auth().currentUser, userService: AnyUserService = UserService.shared) {
+    init(userSession: FirebaseAuth.User? = Auth.auth().currentUser, userService: UserServiceProtocol = UserService.shared) {
         self.userSession = userSession
         self.userService = userService
     }
@@ -72,7 +72,7 @@ class AuthService: ObservableObject, AuthServiceProtocol {
         let user = User(id: id, fullName: fullName, email: email, username: userName, profileImageUrl: nil, bio: nil)
         guard let userData = try? Firestore.Encoder().encode(user) else { return }
         try await Firestore.firestore().collection("users").document(id).setData(userData)
-        userService.currentUser = user
+        userService.currentUser.value = user
         
     }
     

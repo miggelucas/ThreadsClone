@@ -23,9 +23,9 @@ class ExploreViewModel: ObservableObject {
         }
     }
     
-    var userService: AnyUserService
+    var userService: UserServiceProtocol
     
-    init(userService: AnyUserService = UserService.shared) {
+    init(userService: UserServiceProtocol = UserService.shared) {
         self.userService = userService
         Task {
             try await fecthUSers()

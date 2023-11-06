@@ -13,11 +13,11 @@ class CurrentUserProfileViewModel: ObservableObject {
     
     @Published var currentUser: User?
     
-    var userService: AnyUserService
+    var userService: UserServiceProtocol
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(userService: AnyUserService = UserService.shared) {
+    init(userService: UserServiceProtocol = UserService.shared) {
         self.userService = userService
         setupSubscribers()
     }
@@ -31,7 +31,7 @@ class CurrentUserProfileViewModel: ObservableObject {
     }
     
     private func setupSubscribers() {
-        userService.$currentUser.sink { [weak self] user in
+        userService.currentUser.sink { [weak self] user in
             self?.currentUser = user
         }.store(in: &cancellables)
         

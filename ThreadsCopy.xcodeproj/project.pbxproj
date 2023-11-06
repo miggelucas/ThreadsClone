@@ -79,7 +79,7 @@
 		0CA919B72AF2C9AC0086C9C9 /* ThreadsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919B62AF2C9AC0086C9C9 /* ThreadsTests.swift */; };
 		0CA919BF2AF2CBB80086C9C9 /* ImageUploaderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919BE2AF2CBB80086C9C9 /* ImageUploaderProtocol.swift */; };
 		0CA919C12AF2CD000086C9C9 /* ThreadServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C02AF2CD000086C9C9 /* ThreadServiceProtocol.swift */; };
-		0CA919C32AF2FF630086C9C9 /* AnyUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C22AF2FF630086C9C9 /* AnyUserService.swift */; };
+		0CA919C32AF2FF630086C9C9 /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C22AF2FF630086C9C9 /* UserServiceProtocol.swift */; };
 		0CA919C52AF302220086C9C9 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C42AF302220086C9C9 /* AuthServiceProtocol.swift */; };
 		0CA919C72AF306F60086C9C9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C62AF306F60086C9C9 /* SettingsView.swift */; };
 		0CA919C92AF307DB0086C9C9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C82AF307DB0086C9C9 /* SettingsViewModel.swift */; };
@@ -144,7 +144,7 @@
 		0CA919B62AF2C9AC0086C9C9 /* ThreadsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsTests.swift; sourceTree = "<group>"; };
 		0CA919BE2AF2CBB80086C9C9 /* ImageUploaderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploaderProtocol.swift; sourceTree = "<group>"; };
 		0CA919C02AF2CD000086C9C9 /* ThreadServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadServiceProtocol.swift; sourceTree = "<group>"; };
-		0CA919C22AF2FF630086C9C9 /* AnyUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyUserService.swift; sourceTree = "<group>"; };
+		0CA919C22AF2FF630086C9C9 /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
 		0CA919C42AF302220086C9C9 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
 		0CA919C62AF306F60086C9C9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0CA919C82AF307DB0086C9C9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -594,7 +594,7 @@
 			children = (
 				0CA919BE2AF2CBB80086C9C9 /* ImageUploaderProtocol.swift */,
 				0CA919C02AF2CD000086C9C9 /* ThreadServiceProtocol.swift */,
-				0CA919C22AF2FF630086C9C9 /* AnyUserService.swift */,
+				0CA919C22AF2FF630086C9C9 /* UserServiceProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -784,7 +784,7 @@
 				0C54D64D2ADE2E7B0027B57B /* ThreadsTextFieldModifier.swift in Sources */,
 				0CA919C72AF306F60086C9C9 /* SettingsView.swift in Sources */,
 				0C54D6792ADF7F870027B57B /* EditProfileView.swift in Sources */,
-				0CA919C32AF2FF630086C9C9 /* AnyUserService.swift in Sources */,
+				0CA919C32AF2FF630086C9C9 /* UserServiceProtocol.swift in Sources */,
 				0C52C93C2AF0759200F84757 /* Thread.swift in Sources */,
 				0CA919BF2AF2CBB80086C9C9 /* ImageUploaderProtocol.swift in Sources */,
 				0C52C9422AF0769900F84757 /* ThreadService.swift in Sources */,

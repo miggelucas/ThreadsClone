@@ -7,14 +7,18 @@
 
 import Firebase
 import FirebaseFirestoreSwift
+import Combine
 
 
-class UserService: AnyUserService {
+class UserService: UserServiceProtocol {
     
-    static let shared: AnyUserService = UserService()
+    var currentUser: CurrentValueSubject<User?, Never>
     
-    required init() {
-        super.init()
+    static let shared: UserServiceProtocol = UserService()
+    
+    init() {
+        currentUser = .init(nil)
+        
         Task {
             try await fetchCurrentUser()
         }
@@ -40,7 +44,7 @@ class UserService: AnyUserService {
     
     
     public func singOut() {
-        currentUser = nil
+        currentUser.send(nil)
     }
     
     @MainActor
@@ -48,7 +52,7 @@ class UserService: AnyUserService {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let snapshot = try await Firestore.firestore().collection("users").document(uid).getDocument()
         let user = try snapshot.data(as: User.self)
-        self.currentUser = user
+        self.currentUser.send(user)
         
     }
     
@@ -59,10 +63,10 @@ class UserService: AnyUserService {
             try await Firestore.firestore().collection("users").document(currenUserId).updateData([
                 "profileImageUrl" : imageUrl
             ])
-            self.currentUser?.profileImageUrl = imageUrl
+            self.currentUser.value?.profileImageUrl = imageUrl
         } catch {
             print("DEBUG: Failed to update user profile image: \(error.localizedDescription)")
         }
-     
+        
     }
 }

@@ -13,11 +13,15 @@ class ProfileViewModel: ObservableObject {
     @Published var currentUser: User?
     private var cancellables = Set<AnyCancellable>()
     
-    var userService: AnyUserService
+    var userService: UserServiceProtocol
     
-    init(userService: AnyUserService = UserService.shared) {
+    init(userService: UserServiceProtocol = UserService.shared) {
         self.userService = userService
         setupSubscribers()
+    }
+    
+    deinit {
+        cancellables.removeAll()
     }
     
     public func refreshTriggered() {
@@ -25,7 +29,7 @@ class ProfileViewModel: ObservableObject {
     }
     
     private func setupSubscribers() {
-        userService.$currentUser.sink { [weak self] user in
+        userService.currentUser.sink { [weak self] user in
             self?.currentUser = user
         }.store(in: &cancellables)
         

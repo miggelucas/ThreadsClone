@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import Combine
 
-typealias AnyUserService = UserServiceProtocol & ThreadsUser
  
 protocol UserServiceProtocol {
     
-    static var shared: AnyUserService { get }
+    var currentUser: CurrentValueSubject<User?, Never> { get }
+    
+    static var shared: UserServiceProtocol { get }
     
     func fetchUsers() async throws -> [User]
     
@@ -24,9 +26,3 @@ protocol UserServiceProtocol {
     func updateUserProfileImage(withImageUrl imageUrl: String) async throws
 }
 
-
-class ThreadsUser {
-    @Published var currentUser: User?
-    
-     required init() {}
-}

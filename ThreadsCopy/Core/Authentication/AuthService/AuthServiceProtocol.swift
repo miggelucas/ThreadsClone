@@ -17,7 +17,7 @@ protocol AuthServiceProtocol {
     
     var authDelegate: AuthServiceDelegate? { get set }
     
-    var userService: AnyUserService { get }
+    var userService: UserServiceProtocol { get }
     
     func login(withEmail email: String, password: String) async -> Result<String?, AuthErrorCode>
     
