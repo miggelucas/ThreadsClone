@@ -51,7 +51,7 @@ class RegistrationViewModel: ObservableObject {
         }
     }
     
-    func createUser() async {
+    private func createUser() async {
         if let authError = await authService.createUser(withEmail: email, password: password, fullName: fullName, userName: userName) {
             self.state = .idle
             handleWithError(authError)

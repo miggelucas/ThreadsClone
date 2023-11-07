@@ -11,8 +11,6 @@ import FirebaseAuth
 
 protocol AuthServiceProtocol {
     
-    static var shared: AuthServiceProtocol { get }
-    
     var userSession: FirebaseAuth.User? { get }
     
     var authDelegate: AuthServiceDelegate? { get set }

@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "C3E9DECE-E871-42B3-867F-DAC63B30ED19",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:ThreadsCopy.xcodeproj",
+        "identifier" : "0CA919B32AF2C9AC0086C9C9",
+        "name" : "ThreadsTests"
+      }
+    }
+  ],
+  "version" : 1
+}

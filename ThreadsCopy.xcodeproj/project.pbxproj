@@ -83,6 +83,10 @@
 		0CA919C52AF302220086C9C9 /* AuthServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C42AF302220086C9C9 /* AuthServiceProtocol.swift */; };
 		0CA919C72AF306F60086C9C9 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C62AF306F60086C9C9 /* SettingsView.swift */; };
 		0CA919C92AF307DB0086C9C9 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA919C82AF307DB0086C9C9 /* SettingsViewModel.swift */; };
+		0CB3C3FC2AF9556500799B36 /* UserServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3C3FB2AF9556500799B36 /* UserServiceTest.swift */; };
+		0CB3C4012AF955B600799B36 /* UserServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3C4002AF955B600799B36 /* UserServiceMock.swift */; };
+		0CB3C4032AF9587900799B36 /* AuthServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3C4022AF9587900799B36 /* AuthServiceMock.swift */; };
+		0CB3C4052AF95A5000799B36 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB3C4042AF95A5000799B36 /* LoginViewModelTests.swift */; };
 		0CD6F2392AF18CA300D413B0 /* UserContentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6F2382AF18CA300D413B0 /* UserContentListViewModel.swift */; };
 		0CD6F23B2AF1971400D413B0 /* Timestamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6F23A2AF1971400D413B0 /* Timestamp.swift */; };
 /* End PBXBuildFile section */
@@ -104,6 +108,7 @@
 		0C44CAD42AE2B9D0005D8985 /* CurrentUserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileViewModel.swift; sourceTree = "<group>"; };
 		0C44CAD72AE2BBB3005D8985 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		0C44CAD92AE2BD87005D8985 /* UserContentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListView.swift; sourceTree = "<group>"; };
+		0C47F8BB2AFA76EF004A0C5B /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		0C52C9362AEFD60B00F84757 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0C52C93B2AF0759200F84757 /* Thread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
 		0C52C93F2AF0767800F84757 /* CreateThreadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThreadViewModel.swift; sourceTree = "<group>"; };
@@ -148,6 +153,10 @@
 		0CA919C42AF302220086C9C9 /* AuthServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceProtocol.swift; sourceTree = "<group>"; };
 		0CA919C62AF306F60086C9C9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0CA919C82AF307DB0086C9C9 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		0CB3C3FB2AF9556500799B36 /* UserServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTest.swift; sourceTree = "<group>"; };
+		0CB3C4002AF955B600799B36 /* UserServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceMock.swift; sourceTree = "<group>"; };
+		0CB3C4022AF9587900799B36 /* AuthServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceMock.swift; sourceTree = "<group>"; };
+		0CB3C4042AF95A5000799B36 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		0CD6F2382AF18CA300D413B0 /* UserContentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContentListViewModel.swift; sourceTree = "<group>"; };
 		0CD6F23A2AF1971400D413B0 /* Timestamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -584,7 +593,11 @@
 		0CA919B52AF2C9AC0086C9C9 /* ThreadsTests */ = {
 			isa = PBXGroup;
 			children = (
+				0C47F8BB2AFA76EF004A0C5B /* TestPlan.xctestplan */,
 				0CA919B62AF2C9AC0086C9C9 /* ThreadsTests.swift */,
+				0CB3C3FF2AF9559F00799B36 /* Mock */,
+				0CB3C3FE2AF9558300799B36 /* ViewModels */,
+				0CB3C3FD2AF9557700799B36 /* Service */,
 			);
 			path = ThreadsTests;
 			sourceTree = "<group>";
@@ -597,6 +610,31 @@
 				0CA919C22AF2FF630086C9C9 /* UserServiceProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		0CB3C3FD2AF9557700799B36 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0CB3C3FB2AF9556500799B36 /* UserServiceTest.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		0CB3C3FE2AF9558300799B36 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0CB3C4042AF95A5000799B36 /* LoginViewModelTests.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		0CB3C3FF2AF9559F00799B36 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				0CB3C4002AF955B600799B36 /* UserServiceMock.swift */,
+				0CB3C4022AF9587900799B36 /* AuthServiceMock.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		0CD6F2362AF18C8200D413B0 /* Views */ = {
@@ -804,6 +842,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CB3C3FC2AF9556500799B36 /* UserServiceTest.swift in Sources */,
+				0CB3C4032AF9587900799B36 /* AuthServiceMock.swift in Sources */,
+				0CB3C4012AF955B600799B36 /* UserServiceMock.swift in Sources */,
+				0CB3C4052AF95A5000799B36 /* LoginViewModelTests.swift in Sources */,
 				0CA919B72AF2C9AC0086C9C9 /* ThreadsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

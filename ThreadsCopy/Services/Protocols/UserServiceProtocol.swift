@@ -13,15 +13,11 @@ protocol UserServiceProtocol {
     
     var currentUser: CurrentValueSubject<User?, Never> { get }
     
-    static var shared: UserServiceProtocol { get }
-    
     func fetchUsers() async throws -> [User]
     
     func fetchUser(withUis uid: String) async throws -> User
     
     func singOut()
-    
-    func fetchCurrentUser() async throws
     
     func updateUserProfileImage(withImageUrl imageUrl: String) async throws
 }
