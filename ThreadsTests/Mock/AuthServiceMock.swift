@@ -12,7 +12,9 @@ import FirebaseAuth
 class AuthServiceMock: AuthServiceProtocol {
     
     public var didCallLogin: Bool = false
+    public var didCallCreateUser: Bool = false
     public var loginShouldReturnSuccess = true
+    public var singUpShouldReturnSccess = true
     
     
     var userSession: FirebaseAuth.User? = nil
@@ -32,11 +34,17 @@ class AuthServiceMock: AuthServiceProtocol {
             
         }
        
-        
     }
     
     func createUser(withEmail email: String, password: String, fullName: String, userName: String) async -> AuthErrorCode? {
-        return nil
+        self.didCallCreateUser = true
+        
+        if singUpShouldReturnSccess {
+            return nil
+        } else {
+            return AuthErrorCode.init(.emailAlreadyInUse)
+        }
+        
     }
     
     func uploadUserData(withEmail email: String, fullName: String, userName: String, id: String) async throws {

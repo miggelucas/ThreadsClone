@@ -26,10 +26,10 @@ class RegistrationViewModel: ObservableObject {
     @Published var shouldShowAlert: Bool = false
     @Published var alertMessage: String = ""
     
-    private let authService: AuthServiceProtocol
+    private let registerUserService: SignInServiceProtocol
     
-    init(service: AuthServiceProtocol = AuthService.shared) {
-        self.authService = service
+    init(service: SignInServiceProtocol = AuthService.shared) {
+        self.registerUserService = service
     }
     
     public var isSingUpEnable: Bool {
@@ -51,7 +51,7 @@ class RegistrationViewModel: ObservableObject {
     }
     
     private func createUser() async {
-        if let authError = await authService.createUser(withEmail: email, password: password, fullName: fullName, userName: userName) {
+        if let authError = await registerUserService.createUser(withEmail: email, password: password, fullName: fullName, userName: userName) {
             self.state = .idle
             handleWithError(authError)
         }

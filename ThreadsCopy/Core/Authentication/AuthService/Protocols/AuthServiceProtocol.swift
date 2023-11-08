@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 
 
-protocol AuthServiceProtocol: LoginServiceProtocol {
+protocol AuthServiceProtocol: LoginServiceProtocol, SignInServiceProtocol {
     
     var userSession: FirebaseAuth.User? { get }
     
@@ -17,7 +17,6 @@ protocol AuthServiceProtocol: LoginServiceProtocol {
     
     var userService: UserServiceProtocol { get }
     
-    func createUser(withEmail email: String, password: String, fullName: String, userName: String) async -> AuthErrorCode?
     
     func uploadUserData(withEmail email: String, fullName: String,userName: String, id: String ) async throws
     
@@ -25,9 +24,3 @@ protocol AuthServiceProtocol: LoginServiceProtocol {
     
 }
 
-
-protocol LoginServiceProtocol {
-    
-    func login(withEmail email: String, password: String) async -> Result<String?, AuthErrorCode>
-    
-}
