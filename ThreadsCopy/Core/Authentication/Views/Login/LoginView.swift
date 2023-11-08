@@ -83,7 +83,10 @@ struct LoginView: View {
         }
        
         Button {
-            viewModel.loginPressed()
+            Task {
+                await viewModel.loginPressed()
+            }
+            
         } label: {
             switch viewModel.state {
             case .idle:

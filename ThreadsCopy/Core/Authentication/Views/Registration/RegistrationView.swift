@@ -75,7 +75,10 @@ struct RegistrationView: View {
     
     private var signUpButtonSection: some View {
         Button {
-            viewModel.singUpPressed()
+            Task {
+                await viewModel.singUpPressed()
+            }
+          
             
         } label: {
             switch viewModel.state {

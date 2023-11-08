@@ -40,15 +40,14 @@ class RegistrationViewModel: ObservableObject {
     }
     
     @MainActor
-    public func singUpPressed() {
+    public func singUpPressed() async {
         if !isSingUpEnable { return }
         
         if state == .waitingApiResponse { return }
         
-        Task {
-            self.state = .waitingApiResponse
-            await createUser()
-        }
+        self.state = .waitingApiResponse
+        await createUser()
+        
     }
     
     private func createUser() async {

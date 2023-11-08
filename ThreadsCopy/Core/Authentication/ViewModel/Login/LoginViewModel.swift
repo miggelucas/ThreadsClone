@@ -22,33 +22,32 @@ class LoginViewModel: ObservableObject {
     @Published var shouldShowAlert: Bool = false
     @Published var alertMessage: String = ""
     
-    var authService: AuthServiceProtocol
+    var loginSerivce: LoginServiceProtocol
     
     var isLoginEnable: Bool {
         return email.contains("@") && !password.isEmpty
     }
     
-    init(authService: AuthServiceProtocol = AuthService.shared) {
-        self.authService = authService
+    init(loginService: LoginServiceProtocol = AuthService.shared) {
+        self.loginSerivce = loginService
     }
     
     @MainActor
-    public func loginPressed() {
+    public func loginPressed() async {
         if state != .waitingApiResponse {
             state = .waitingApiResponse
             
-            Task {
-                let result = await authService.login(withEmail: email, password: password)
+            let result = await loginSerivce.login(withEmail: email, password: password)
+            
+            switch result {
+            case .success:
+                print("DEBUG: Login sucessful")
                 
-                switch result {
-                case .success:
-                    print("DEBUG: Login sucessful")
-                    
-                case .failure(let authError):
-                    handleWithError(authError)
-                    self.state = .idle
-                    
-                }
+            case .failure(let authError):
+                handleWithError(authError)
+                self.state = .idle
+                
+                
             }
         }
     }
@@ -57,10 +56,10 @@ class LoginViewModel: ObservableObject {
     private func handleWithError(_ authError: AuthErrorCode) {
         switch authError.code {
         case .wrongPassword:
-            alertMessage = "DEBUG: Wrong passoword"
+            alertMessage = "Wrong passoword"
             
         case .invalidEmail:
-            alertMessage = "DEBUG: invalid Email"
+            alertMessage = "invalid Email"
             
         default:
             alertMessage = authError.localizedDescription

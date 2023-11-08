@@ -17,7 +17,7 @@ final class LoginViewModelTests: XCTestCase {
     
     override func setUpWithError() throws {
         authService = AuthServiceMock()
-        viewModel = LoginViewModel(authService: self.authService)
+        viewModel = LoginViewModel(loginService: self.authService)
     }
     
     func testViewModelStartsAtIdleState() {
@@ -25,31 +25,32 @@ final class LoginViewModelTests: XCTestCase {
         
     }
     
-    func testViewModelChangesStateWhenLogginPressed() {
+    func testViewModelChangesStateWhenLogginPressed() async {
         viewModel.state = .idle
         authService.loginShouldReturnSuccess = true
         
-        Task {
-            await viewModel.loginPressed()
-            
-            XCTAssertTrue(viewModel.state != .idle)
-        }
+        await viewModel.loginPressed()
+        
+        XCTAssertTrue(viewModel.state != .idle)
     }
     
-    func testViewModelGoesBackToIdleWhenLoginFailed() {
+    func testViewModelGoesBackToIdleWhenLoginFailed() async {
+        
+        viewModel.state = .idle
         authService.loginShouldReturnSuccess = false
         
-        Task {
-            await viewModel.loginPressed()
-            
-            await MainActor.run {
-                XCTAssertTrue(viewModel.state == .idle)
-            }
-        }
+        await viewModel.loginPressed()
+        
+        XCTAssertTrue(viewModel.state == .idle)
     }
     
-    //    func testWhenLoginFailedShouldPresentError() {
-    
+    func testWhenLoginFailedShouldPresentError() async {
+        authService.loginShouldReturnSuccess = false
+        
+        await viewModel.loginPressed()
+        
+        XCTAssertTrue(viewModel.shouldShowAlert)
+    }
     
     func testLoginButtonDisabledWhenPasswordIsEmpty() {
         
@@ -88,39 +89,17 @@ final class LoginViewModelTests: XCTestCase {
     }
     
     
-    @MainActor
     func testLoginPressedCallsAuthService() async {
-        
-        // given
+        authService.didCallLogin = false
+    
         viewModel.email = ""
         viewModel.password = ""
         
+        await viewModel.loginPressed()
         
-        Task {
-            viewModel.loginPressed()
-            let result = self.authService.didCallLogin
-            // them
-            
-            print("dentro do dispatch \(self.authService.didCallLogin)")
-            XCTAssertTrue(result)
-            
-        }
+        XCTAssertTrue(authService.didCallLogin)
         
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let imageURL = URL(string: "https://source.unsplash.com/random/300x200")!
-                   let image = try? await ImageFetcher().fetchImage(for: imageURL)
-
-                   await MainActor.run {
-                       imageView.image = image
-                       completion()
-                   }
-        }
-        
-       
     }
-    
     
     
 }
