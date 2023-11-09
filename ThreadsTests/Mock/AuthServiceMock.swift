@@ -15,7 +15,7 @@ class AuthServiceMock: AuthServiceProtocol {
     public var didCallCreateUser: Bool = false
     public var loginShouldReturnSuccess = true
     public var singUpShouldReturnSccess = true
-    
+    public var authErrorType: AuthErrorCode = AuthErrorCode(.emailAlreadyInUse)
     
     var userSession: FirebaseAuth.User? = nil
     
@@ -30,7 +30,7 @@ class AuthServiceMock: AuthServiceProtocol {
             return .success(nil)
             
         } else {
-            return .failure(AuthErrorCode.init(.appNotAuthorized))
+            return .failure(authErrorType)
             
         }
        
@@ -42,7 +42,7 @@ class AuthServiceMock: AuthServiceProtocol {
         if singUpShouldReturnSccess {
             return nil
         } else {
-            return AuthErrorCode.init(.emailAlreadyInUse)
+            return authErrorType
         }
         
     }

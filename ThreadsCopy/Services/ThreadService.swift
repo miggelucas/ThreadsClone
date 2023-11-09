@@ -10,30 +10,42 @@ import Firebase
 import FirebaseFirestoreSwift
 
 
+enum ThreadServiceError: Error {
+    case failedToEncodeThread, failedToUploadThreadToCloud, failedToRetriveDataFromCloud
+}
+
 struct ThreadService: ThreadServiceProtocol {
-    
-    static var shared: ThreadServiceProtocol = ThreadService()
-    
-    private init() {
-        
-    }
-    
+
     func uploadThread(_ thread: Thread) async throws {
-        guard let threadData = try? Firestore.Encoder().encode(thread) else { return }
-        try await Firestore.firestore().collection("threads").addDocument(data: threadData)
+        guard let threadData = try? Firestore.Encoder().encode(thread) else {
+            throw ThreadServiceError.failedToEncodeThread
+        }
+        
+        do {
+            try await Firestore.firestore().collection("threads").addDocument(data: threadData)
+        } catch {
+            throw ThreadServiceError.failedToUploadThreadToCloud
+        }
+   
 
     }
     
     func fetchThreads() async throws -> [Thread] {
-        let snapshot = try await Firestore
-            .firestore()
-            .collection("threads")
-            .order(by: "timestamp", descending: true)
-            .getDocuments()
-        
-        return snapshot.documents.compactMap { thread in
-            try? thread.data(as: Thread.self)
+        do {
+            let snapshot = try await Firestore
+                .firestore()
+                .collection("threads")
+                .order(by: "timestamp", descending: true)
+                .getDocuments()
+            
+            return snapshot.documents.compactMap { thread in
+                try? thread.data(as: Thread.self)
+            }
+        } catch {
+            throw ThreadServiceError.failedToRetriveDataFromCloud
         }
+    
+        
     }
     
     

@@ -28,7 +28,10 @@ struct FeedView: View {
                 }
             }
             .refreshable {
-                viewModel.refreshFeed()
+                Task {
+                    await viewModel.refreshFeed()
+                }
+               
             }
             .navigationTitle("Threads")
             .navigationBarTitleDisplayMode(.inline)
@@ -39,8 +42,10 @@ struct FeedView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        viewModel.refreshFeed()
-                        print("DEBUG: refresh Threads")
+                        Task {
+                           await viewModel.refreshFeed()
+                        }
+                      
                     } label: {
                         Image(systemName: "arrow.counterclockwise")
                             .tint(.primary)

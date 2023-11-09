@@ -8,7 +8,6 @@
 import Foundation
 
 protocol ThreadServiceProtocol {
-    static var shared: ThreadServiceProtocol { get }
     
     func uploadThread(_ thread: Thread) async throws
     

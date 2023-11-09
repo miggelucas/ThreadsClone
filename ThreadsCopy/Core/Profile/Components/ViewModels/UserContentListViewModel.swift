@@ -14,7 +14,7 @@ class UserContentListViewModel: ObservableObject {
     var user: User
     var threadService: ThreadServiceProtocol
     
-    init(user: User, threadService: ThreadServiceProtocol = ThreadService.shared) {
+    init(user: User, threadService: ThreadServiceProtocol = ThreadService()) {
         self.user = user
         self.threadService = threadService
         

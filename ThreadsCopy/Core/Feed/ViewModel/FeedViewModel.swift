@@ -19,36 +19,43 @@ class FeedViewModel: ObservableObject {
     var threadService: ThreadServiceProtocol
     var userService: UserServiceProtocol
     
-    init(threadService: ThreadServiceProtocol = ThreadService.shared, userService: UserServiceProtocol = UserService.shared) {
+    init(threadService: ThreadServiceProtocol = ThreadService(), userService: UserServiceProtocol = UserService.shared) {
         self.threadService = threadService
         self.userService = userService
         
         Task {
-            try await fetchThreads()
+            await fetchThreads()
         }
     }
-   
-    public func refreshFeed() {
+    
+    public func refreshFeed() async {
         self.state = .loading
-        Task {
-            try? await fetchThreads()
-        }
-    }
-
-    @MainActor
-    private func fetchThreads() async throws {
-        self.threads = try await threadService.fetchThreads()
-        self.state = .content
-        try await fetchUserDataForThreads()
-
+        
+        await fetchThreads()
+        
     }
     
     @MainActor
-    private func fetchUserDataForThreads() async throws {
+    func fetchThreads() async {
+        do {
+            self.threads = try await threadService.fetchThreads()
+            self.state = .content
+        } catch ThreadServiceError.failedToRetriveDataFromCloud {
+            print("Failed to retrive Data")
+        } catch {
+            print("Another Error")
+        }
+       
+        await fetchUserDataForThreads()
+        
+    }
+    
+    @MainActor
+    private func fetchUserDataForThreads() async {
         for i in threads.indices {
             let ownerId = self.threads[i].ownerId
-            let threadUser = try await userService.fetchUser(withUis: ownerId)
-        
+            let threadUser = try? await userService.fetchUser(withUis: ownerId)
+            
             self.threads[i].user = threadUser
         }
     }

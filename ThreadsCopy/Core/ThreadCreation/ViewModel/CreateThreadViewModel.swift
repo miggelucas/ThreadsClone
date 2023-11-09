@@ -18,7 +18,7 @@ class CreateThreadViewModel: ObservableObject {
     let threadService: ThreadServiceProtocol
     let userService: UserServiceProtocol
     
-    init(threadService: ThreadServiceProtocol = ThreadService.shared, userService: UserServiceProtocol = UserService.shared) {
+    init(threadService: ThreadServiceProtocol = ThreadService(), userService: UserServiceProtocol = UserService.shared) {
         self.threadService = threadService
         self.userService = userService
     }
