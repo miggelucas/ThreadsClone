@@ -15,7 +15,7 @@ enum ThreadServiceError: Error {
 }
 
 struct ThreadService: ThreadServiceProtocol {
-
+    
     func uploadThread(_ thread: Thread) async throws {
         guard let threadData = try? Firestore.Encoder().encode(thread) else {
             throw ThreadServiceError.failedToEncodeThread
@@ -26,11 +26,10 @@ struct ThreadService: ThreadServiceProtocol {
         } catch {
             throw ThreadServiceError.failedToUploadThreadToCloud
         }
-   
-
+        
     }
     
-    func fetchThreads() async throws -> [Thread] {
+    func fetchThreads() async ->  Result<[Thread], ThreadServiceError> {
         do {
             let snapshot = try await Firestore
                 .firestore()
@@ -38,30 +37,37 @@ struct ThreadService: ThreadServiceProtocol {
                 .order(by: "timestamp", descending: true)
                 .getDocuments()
             
-            return snapshot.documents.compactMap { thread in
-                try? thread.data(as: Thread.self)
-            }
+            let threads = snapshot.documents.compactMap { thread in
+                try? thread.data(as: Thread.self)}
+            
+            return .success(threads)
+            
+            
         } catch {
-            throw ThreadServiceError.failedToRetriveDataFromCloud
+            return .failure(ThreadServiceError.failedToRetriveDataFromCloud)
         }
-    
-        
     }
     
     
-    func fetchUserThreads(uid: String) async throws -> [Thread] {
-        let snapshot = try await Firestore
-            .firestore()
-            .collection("threads")
-            .whereField("ownerId", isEqualTo: uid)
-            .getDocuments()
-        
-        let threads = snapshot.documents.compactMap { thread in
-            try? thread.data(as: Thread.self)
+    func fetchUserThreads(uid: String) async ->  Result<[Thread], ThreadServiceError> {
+        do {
+            let snapshot = try await Firestore
+                .firestore()
+                .collection("threads")
+                .whereField("ownerId", isEqualTo: uid)
+                .getDocuments()
+            
+            let threads = snapshot.documents.compactMap { thread in
+                try? thread.data(as: Thread.self)
+            }
+            
+            let sortedThreads = threads.sorted {
+                $0.timestamp.dateValue() > $1.timestamp.dateValue()
+            }
+            return .success(sortedThreads)
+        } catch {
+            return .failure(ThreadServiceError.failedToRetriveDataFromCloud)
         }
         
-        return threads.sorted {
-            $0.timestamp.dateValue() > $1.timestamp.dateValue()
-        }
     }
 }

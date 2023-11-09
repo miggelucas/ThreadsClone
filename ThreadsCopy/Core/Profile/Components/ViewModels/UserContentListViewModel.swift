@@ -19,19 +19,30 @@ class UserContentListViewModel: ObservableObject {
         self.threadService = threadService
         
         Task {
-            try await fetchThreads()
+            await fetchThreads()
         }
     }
     
     @MainActor
-    func fetchThreads() async throws {
-        threads = try await threadService.fetchUserThreads(uid: user.id)
+    func fetchThreads() async {
         
-        for i in threads.indices {
-            threads[i].user = self.user
+        let result = await threadService.fetchUserThreads(uid: user.id)
+        
+        switch result {
+        case .success(let recivedThreads):
+            
+            var threads = recivedThreads
+            
+            for i in threads.indices {
+                threads[i].user = self.user
+            }
+            
+            self.threads = threads
+        case .failure(_):
+            print("DEBUG: Failed To retriveData")
+            
         }
-        
-        self.threads = threads
+       
     }
     
 }

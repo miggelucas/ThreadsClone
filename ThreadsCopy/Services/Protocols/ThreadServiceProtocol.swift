@@ -11,8 +11,8 @@ protocol ThreadServiceProtocol {
     
     func uploadThread(_ thread: Thread) async throws
     
-    func fetchThreads() async throws -> [Thread]
+    func fetchThreads() async ->  Result<[Thread], ThreadServiceError>
     
-    func fetchUserThreads(uid: String) async throws -> [Thread]
+    func fetchUserThreads(uid: String) async ->  Result<[Thread], ThreadServiceError>
     
 }

@@ -37,15 +37,19 @@ class FeedViewModel: ObservableObject {
     
     @MainActor
     func fetchThreads() async {
-        do {
-            self.threads = try await threadService.fetchThreads()
+        let result = await threadService.fetchThreads()
+        
+        switch result {
+        case .success(let recivedThreads):
+            self.threads = recivedThreads
             self.state = .content
-        } catch ThreadServiceError.failedToRetriveDataFromCloud {
-            print("Failed to retrive Data")
-        } catch {
-            print("Another Error")
+            
+        case .failure(_):
+           print("DEBUG: Failed to fetch Data")
         }
-       
+        
+        
+        
         await fetchUserDataForThreads()
         
     }
